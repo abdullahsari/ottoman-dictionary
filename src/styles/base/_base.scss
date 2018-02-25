@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    font-size: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+    width: 0.4rem;
+    height: 0.4rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $low-alpha-black;
+}
+
+html {
+    font-size: 0.625em;
+}
+
+body {
+    line-height: 1;
+    overflow-x: hidden;
+}
+
+strong {
+    font-weight: 500;
+}
+
+button {
+    border-radius: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote {
+    &::before,
+    &::after {
+        content: '';
+    }
+}
+
+q {
+    &::before,
+    &::after {
+        content: '';
+    }
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: underline;
+}

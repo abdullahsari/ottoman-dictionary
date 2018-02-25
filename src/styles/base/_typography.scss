@@ -1,0 +1,51 @@
+body,
+html {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial,
+        Lucida Grande, sans-serif;
+    font-feature-settings: 'liga';
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+    font-size: $primary-font-size;
+}
+
+h1 {
+    font-weight: 400;
+}
+
+h2 {
+    font-weight: 300;
+}
+
+h3 {
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+p {
+    font-weight: 400;
+    line-height: 1.7rem;
+}
+
+.material-icons {
+    direction: ltr;
+    display: inline-block;
+    font-family: 'Material Icons', sans-serif;
+    font-size: 2.4rem;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 1;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+}

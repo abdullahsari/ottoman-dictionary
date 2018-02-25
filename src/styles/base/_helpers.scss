@@ -1,0 +1,21 @@
+.emoji {
+    font-size: 2.4rem;
+    vertical-align: middle;
+    line-height: 2;
+}
+
+.icon-btn {
+    @include flex($justify: space-between);
+
+    width: 100%;
+
+    span,
+    mat-icon {
+        align-self: center;
+    }
+}
+
+.structural {
+    left: -9999999999rem;
+    position: absolute;
+}
