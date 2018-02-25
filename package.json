@@ -1,0 +1,59 @@
+{
+    "authors": [
+        {
+            "name": "Muhammed Sari",
+            "email": "hi@muhammedsari.me"
+        }
+    ],
+    "description": "Personal Dictionary PWA",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/abdullahsari/personal-dictionary"
+    },
+    "name": "personal-dictionary",
+    "version": "0.0.0",
+    "license": "MIT",
+    "scripts": {
+        "tscheck": "ng lint --fix && ng build --aot",
+        "lint": "stylelint \"**/*.scss\" && ng lint",
+        "precommit": "lint-staged"
+    },
+    "private": true,
+    "dependencies": {
+        "@angular/animations": "^5.2.0",
+        "@angular/cdk": "^5.2.2",
+        "@angular/common": "^5.2.0",
+        "@angular/compiler": "^5.2.0",
+        "@angular/core": "^5.2.0",
+        "@angular/forms": "^5.2.0",
+        "@angular/http": "^5.2.0",
+        "@angular/material": "^5.2.2",
+        "@angular/platform-browser": "^5.2.0",
+        "@angular/platform-browser-dynamic": "^5.2.0",
+        "@angular/router": "^5.2.0",
+        "@angular/service-worker": "^5.2.0",
+        "angularfire2": "^5.0.0-rc.6",
+        "core-js": "^2.4.1",
+        "firebase": "^4.10.1",
+        "normalize.css": "^8.0.0",
+        "rxjs": "^5.5.6",
+        "zone.js": "^0.8.19"
+    },
+    "devDependencies": {
+        "@angular/cli": "~1.7.1",
+        "@angular/compiler-cli": "^5.2.0",
+        "@angular/language-service": "^5.2.0",
+        "@types/node": "~6.0.60",
+        "codelyzer": "^4.1.0",
+        "husky": "^0.14.3",
+        "lint-staged": "^7.0.0",
+        "prettier": "^1.10.2",
+        "stylelint": "^9.1.1",
+        "stylelint-config-prettier": "^2.1.0",
+        "stylelint-config-standard": "^18.1.0",
+        "ts-node": "~4.1.0",
+        "tslint": "~5.9.1",
+        "tslint-config-prettier": "^1.8.0",
+        "typescript": "~2.6.2"
+    }
+}

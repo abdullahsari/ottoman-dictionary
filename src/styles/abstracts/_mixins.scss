@@ -1,0 +1,31 @@
+@mixin font-face($name, $style, $weight, $file, $extension, $format) {
+    font-family: $name;
+    font-style: $style;
+    font-weight: $weight;
+    src: url('../assets/fonts/#{$file}.#{$extension}') format('#{$format}');
+}
+@mixin flex($direction: null, $justify: null, $align: null) {
+    display: flex;
+    @if ($direction != null) {
+        flex-direction: $direction;
+    }
+    @if ($justify != null) {
+        justify-content: $justify;
+    }
+    @if ($align != null) {
+        align-items: $align;
+    }
+}
+@mixin icon-size($size: 2.4rem) {
+    font-size: $size;
+    height: $size;
+    width: $size;
+    line-height: $size;
+}
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media screen and (min-width: #{map-get($breakpoints, $breakpoint)}) {
+            @content;
+        }
+    }
+}

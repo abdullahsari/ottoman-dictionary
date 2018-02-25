@@ -1,0 +1,16 @@
+{
+    "name": "Personal Dictionary",
+    "short_name": "P.D.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FFF",
+    "description": "Webapp that enhances the user's vocabulary",
+    "theme_color": "#FFF",
+    "icons": [
+        {
+            "src": "assets/img/touch/homescreen512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
