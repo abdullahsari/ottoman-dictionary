@@ -1,14 +1,14 @@
-<mat-drawer-container>
-    <mat-drawer #drawer [mode]="mobileQuery.matches ? 'side' : 'over'" opened="mobileQuery.matches ? true : false">
-    </mat-drawer>
-    <mat-drawer-content>
+<mat-sidenav-container>
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'side' : 'over'" opened="mobileQuery.matches ? true : false">
+    </mat-sidenav>
+    <mat-sidenav-content>
         <mat-toolbar color="primary">
-            <button (click)="drawer.toggle()" type="button" mat-button>
-                <mat-icon>{{drawer.opened ? 'arrow_back' : 'menu'}}</mat-icon>
+            <button (click)="snav.toggle()" type="button" mat-button>
+                <mat-icon>{{snav.opened ? 'arrow_back' : 'menu'}}</mat-icon>
             </button>
             <a mat-button routerLink="/">
                 <span>
-                    <img src="assets/img/logo.svg" alt="Book" />
+                    <img src="../../../assets/img/logo.svg" alt="Book" />
                     <h1>Personal Dictionary</h1>
                 </span>
             </a>
@@ -16,5 +16,5 @@
         <main>
             <router-outlet></router-outlet>
         </main>
-    </mat-drawer-content>
-</mat-drawer-container>
+    </mat-sidenav-content>
+</mat-sidenav-container>
