@@ -38,7 +38,6 @@
         "no-shadowed-variable": true,
         "no-string-literal": true,
         "no-string-throw": true,
-        "no-submodule-imports": [true, "zone.js"],
         "no-switch-case-fall-through": true,
         "no-unnecessary-initializer": true,
         "no-unused-expression": true,
