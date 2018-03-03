@@ -4,19 +4,16 @@ $secondary-font-size: 1.4rem !default;
 
 // Colors
 $black: #000 !default;
-$grayish-black: #404040 !default;
-$gray: #ebebeb !default;
-$white: hsla(0, 0%, 100%, 0.87) !default;
-$low-alpha-black: rgba(0, 0, 0, 0.12) !default;
+$white: hsla(0, 0%, 100%, .87) !default;
 
 // Responsiveness
-$breakpoints: ('xs': 601px, 'sm': 961px, 'md': 1281px, 'lg': 1601px) !default;
+$breakpoints: (xs: 601px, sm: 961px, md: 1281px, lg: 1601px) !default;
 
 // Layout
-$side-offset: ('xs': 1.2rem, 'sm': 3.2rem) !default;
+$side-offset: (xs: 1.2rem, sm: 3.2rem) !default;
 
 // Padding above the main content
-$top-paddings: ('xs': 5.6rem, 'sm': 6.4rem) !default;
+$top-paddings: (xs: 5.6rem, sm: 6.4rem) !default;
 
 // Floating Action Button
-$fab-offset: ('xs': 1.6rem, 'sm': 2.4rem) !default;
+$fab-offset: (xs: 1.6rem, sm: 2.4rem) !default;
