@@ -37,7 +37,9 @@
         "rem",
         "s",
         "px",
-        "%"
+        "%",
+        "vw",
+        "vh"
       ],
       "number-leading-zero": "never"
     }
