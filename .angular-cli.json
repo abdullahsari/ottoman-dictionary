@@ -21,7 +21,10 @@
                 "dev": "environments/environment.ts",
                 "prod": "environments/environment.prod.ts"
             },
-            "serviceWorker": true
+            "serviceWorker": true,
+            "stylePreprocessorOptions": {
+                "includePaths": ["styles/abstracts"]
+            }
         }
     ],
     "lint": [
