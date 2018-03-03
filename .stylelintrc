@@ -38,6 +38,7 @@
         "s",
         "px",
         "%"
-      ]
+      ],
+      "number-leading-zero": "never"
     }
 }
