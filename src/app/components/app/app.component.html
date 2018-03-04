@@ -1,5 +1,7 @@
 <mat-sidenav-container>
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'side' : 'over'" opened="mobileQuery.matches ? true : false">
+    <mat-sidenav #snav
+                 [mode]="mobileQuery.matches ? 'side' : 'over'"
+                 [opened]="mobileQuery.matches ? true : false">
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar color="primary">
