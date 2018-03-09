@@ -57,3 +57,7 @@ The sole targeted browser is Google Chrome. The application may (not) work on ot
 ## License
 
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/abdullahsari/personal-dictionary/master/LICENSE)
+
+## Credits
+
+* Book icon (on the header) by [Gregor Cresnar](https://www.flaticon.com/authors/gregor-cresnar) from www.flaticon.com
