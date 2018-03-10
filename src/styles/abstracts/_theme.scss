@@ -2,8 +2,41 @@
 
 @include mat-core();
 
-$app-primary: mat-palette($mat-indigo, 600);
-$app-accent: mat-palette($mat-pink, A200, A100, A400);
+$greyish-black: (
+    50 : #e8e8e8,
+    100 : #c6c6c6,
+    200 : #a0a0a0,
+    300 : #797979,
+    400 : #5d5d5d,
+    500 : #404040,
+    600 : #3a3a3a,
+    700 : #323232,
+    800 : #2a2a2a,
+    900 : #1c1c1c,
+    A100 : #f07777,
+    A200 : #eb4949,
+    A400 : #ff0202,
+    A700 : #e70000,
+    contrast:
+        (
+            50 : #000,
+            100 : #000,
+            200 : #000,
+            300 : #fff,
+            400 : #fff,
+            500 : #fff,
+            600 : #fff,
+            700 : #fff,
+            800 : #fff,
+            900 : #fff,
+            A100 : #000,
+            A200 : #fff,
+            A400 : #fff,
+            A700 : #fff
+        )
+);
+$app-primary: mat-palette($greyish-black, 500);
+$app-accent: mat-palette($mat-pink, 500);
 $app-warn: mat-palette($mat-red);
 $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 
