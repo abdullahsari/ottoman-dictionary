@@ -33,8 +33,10 @@ One should now be able to run the NPM scripts declared in package.json.
 Navigate to the project root and run the following command:
 
 ```shell
-yarn ng serve -o -sm
+yarn ng serve --aot -o -sm
 ```
+
+Just-in-Time **will not** work, you **must** use Ahead-of-Time compilation.
 
 This command will commence webpack-dev-server (using the Angular CLI) and host the files in-memory from http://localhost:4200
 
