@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 
+import { uniquify } from '../../../shared/helpers/utils';
 import { Translation } from '../../../shared/models/translation.interface';
 
 /**
@@ -46,15 +47,25 @@ export class OttomanService {
                         '#ceviri .col-md-6 .row'
                     );
 
-                    // Retrieve the word that was searched
-                    const searched = el
-                        .getElementsByTagName('h2')[0]
-                        .textContent.split(' / ')[0];
+                    let searched;
+                    let results;
 
-                    // Find all of the results for the search term
-                    const results = Array.from(
-                        el.getElementsByTagName('ul')
-                    ).map(entry => entry.textContent);
+                    try {
+                        // Retrieve the word that was searched
+                        searched = el
+                            .getElementsByTagName('h2')[0]
+                            .textContent.split(' / ')[0];
+
+                        // Find all of the results for the search term
+                        results = uniquify(
+                            Array.from(el.getElementsByTagName('ul')).map(
+                                entry => entry.textContent
+                            )
+                        );
+                    } catch {
+                        searched = 'Could not translate';
+                        results = [];
+                    }
 
                     // Return Translation
                     return { searched, results };
