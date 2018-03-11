@@ -40,7 +40,6 @@
         "%",
         "vw",
         "vh"
-      ],
-      "number-leading-zero": "never"
+      ]
     }
 }
