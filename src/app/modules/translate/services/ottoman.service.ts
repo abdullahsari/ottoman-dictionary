@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 
-import { Translation } from '../models/translation.interface';
+import { Translation } from '../../../shared/models/translation.interface';
 
 /**
  * This service is responsible for anything related to

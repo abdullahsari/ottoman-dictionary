@@ -15,7 +15,7 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
-import { OttomanService } from './services/ottoman.service';
+import { TranslateModule } from './modules/translate/translate.module';
 
 const materials = [
     MatButtonModule,
@@ -35,9 +35,9 @@ const materials = [
         ServiceWorkerModule.register('/ngsw-worker.js', {
             enabled: environment.production,
         }),
+        TranslateModule,
         ...materials,
     ],
-    providers: [OttomanService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
