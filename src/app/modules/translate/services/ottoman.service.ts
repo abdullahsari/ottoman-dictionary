@@ -57,11 +57,12 @@ export class OttomanService {
                             .textContent.split(' / ')[0];
 
                         // Find all of the results for the search term
+                        // Remove duplicates and empty entries as well
                         results = uniquify(
                             Array.from(el.getElementsByTagName('ul')).map(
                                 entry => entry.textContent
                             )
-                        );
+                        ).filter(result => result !== '');
                     } catch {
                         searched = 'Could not translate';
                         results = [];
