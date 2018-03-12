@@ -22,7 +22,7 @@ export class OttomanService {
     /**
      * Translate the provided word using the translation service.
      * @param {string} word The word that should be translated
-     * @returns {Observable<any>} An observable with the translation
+     * @returns {Observable<Translation>} An observable with the translation
      */
     public translate(word: string): Observable<Translation> {
         return this._httpClient
