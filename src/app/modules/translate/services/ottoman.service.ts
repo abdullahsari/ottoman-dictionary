@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 
+import { REVERSE_PROXY } from '../../../app.constants';
 import { uniquify } from '../../../shared/helpers/utils';
 import { Translation } from '../../../shared/models/translation.interface';
 
@@ -15,7 +16,6 @@ import { Translation } from '../../../shared/models/translation.interface';
 @Injectable()
 export class OttomanService {
     private readonly LUGGAT_URL: string = 'http://www.luggat.com';
-    private readonly REVERSE_PROXY: string = 'https://cors-anywhere.herokuapp.com/';
 
     constructor(private _httpClient: HttpClient) {}
 
@@ -25,9 +25,8 @@ export class OttomanService {
      * @returns {Observable<any>} An observable with the translation
      */
     public translate(word: string): Observable<Translation> {
-        // Reverse proxy server is needed to bypass Access-Control-Allow-Origin
         return this._httpClient
-            .post(this.REVERSE_PROXY + this.LUGGAT_URL, null, {
+            .post(REVERSE_PROXY + this.LUGGAT_URL, null, {
                 responseType: 'text',
                 params: {
                     Bul: 'OSMANLICA ARA',
