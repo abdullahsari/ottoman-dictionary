@@ -50,7 +50,7 @@
             "vw",
             "vh"
         ],
-        "no-descending-specificity": false,
+        "no-descending-specificity": null,
         "selector-pseudo-element-no-unknown": [
             true,
             {
