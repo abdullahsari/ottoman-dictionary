@@ -20,12 +20,10 @@
             <button (click)="snav.toggle()" type="button" mat-button>
                 <mat-icon>{{snav.opened ? 'arrow_back' : 'menu'}}</mat-icon>
             </button>
-            <a mat-button routerLink="/">
-                <span>
-                    <img src="../../../assets/img/logo.svg" alt="Book" />
-                    <h1>Personal Dictionary</h1>
-                </span>
-            </a>
+            <div>
+                <img src="../../../assets/img/logo.svg" alt="Book" />
+                <h1>Personal Dictionary</h1>
+            </div>
         </mat-toolbar>
         <main>
             <router-outlet></router-outlet>

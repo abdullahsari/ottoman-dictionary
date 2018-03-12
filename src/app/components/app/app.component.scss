@@ -4,7 +4,14 @@
     display: block;
 }
 
-a {
+.active {
+    mat-icon,
+    p {
+        color: mat-color($app-accent);
+    }
+}
+
+div {
     @include flex(null, center, center);
 
     height: 100%;
@@ -18,7 +25,6 @@ button {
 }
 
 h1 {
-    line-height: 2;
     padding-left: 1rem;
 }
 
@@ -66,15 +72,4 @@ mat-toolbar {
     position: sticky;
     top: 0;
     z-index: 2;
-}
-
-span {
-    @include flex();
-}
-
-.active {
-    mat-icon,
-    p {
-        color: mat-color($app-accent);
-    }
 }
