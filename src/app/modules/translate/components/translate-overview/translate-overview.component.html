@@ -9,7 +9,7 @@
     <mat-divider></mat-divider>
     <div class="input">
         <textarea #input placeholder="Enter a word..."></textarea>
-        <button *ngIf="input.value" [@popAnimation] (click)="clearInput()" mat-icon-button>
+        <button *ngIf="input.value" [@popAnimation] (click)="clear()" mat-icon-button>
             <mat-icon>clear</mat-icon>
         </button>
     </div>

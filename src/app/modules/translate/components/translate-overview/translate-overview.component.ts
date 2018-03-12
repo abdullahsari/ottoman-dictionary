@@ -4,14 +4,11 @@ import {
     Component,
     ElementRef,
     OnDestroy,
-    OnInit,
     ViewChild,
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { fromEvent } from 'rxjs/observable/fromEvent';
-import { of } from 'rxjs/observable/of';
-import { catchError } from 'rxjs/operators/catchError';
+import { tap } from 'rxjs/operators';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
 import { filter } from 'rxjs/operators/filter';
@@ -33,9 +30,9 @@ import { OttomanService } from '../../services/ottoman.service';
     animations: [
         trigger('popAnimation', [
             transition(':enter', [
-                style({ transform: 'scale(0)', opacity: 0 }),
+                style({ transform: 'scale(0.5)', opacity: 0 }),
                 animate(
-                    '.2s ease-out',
+                    '.3s cubic-bezier(.8, -0.6, 0.26, 1.6)',
                     style({ transform: 'scale(1)', opacity: 1 })
                 ),
             ]),
@@ -48,8 +45,8 @@ import { OttomanService } from '../../services/ottoman.service';
         ]),
     ],
 })
-export class TranslateOverviewComponent
-    implements AfterViewInit, OnDestroy, OnInit {
+export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
+    private _cancelRequest: boolean;
     private _subscription: Subscription;
     public isTranslating: boolean;
     public translation: Translation;
@@ -63,32 +60,25 @@ export class TranslateOverviewComponent
     public ngAfterViewInit(): void {
         this._subscription = fromEvent(this._textarea.nativeElement, 'input')
             .pipe(
-                distinctUntilChanged(),
-                debounceTime(500),
                 pluck('srcElement', 'value'),
-                filter(word => {
-                    const bool = word !== '';
-                    if (!bool) this.translation = null;
-                    return bool;
+                tap(word => {
+                    if (word === '') this.clear();
                 }),
+                debounceTime(500),
+                distinctUntilChanged(),
+                filter(word => word !== ''),
                 switchMap((word: string) => {
                     this.isTranslating = true;
+                    this._cancelRequest = false;
                     return this._ottomanService.translate(word);
-                }),
-                catchError(err => {
-                    if (err instanceof TypeError) {
-                        return of({
-                            searched: 'Could not translate',
-                            results: [],
-                        });
-                    }
-                    return ErrorObservable.create(err);
                 })
             )
             .subscribe(
                 (t: Translation) => {
-                    this.translation = t;
-                    this.isTranslating = false;
+                    if (!this._cancelRequest) {
+                        this.translation = t;
+                        this.isTranslating = false;
+                    }
                 },
                 err => {
                     this._snackbarService.notify(
@@ -102,14 +92,14 @@ export class TranslateOverviewComponent
         this._subscription.unsubscribe();
     }
 
-    public ngOnInit(): void {}
-
     /**
-     * Clears the textarea content
+     * Clears the textarea content and cancels any ongoing translation request
      */
-    public clearInput(): void {
+    public clear(): void {
         this._textarea.nativeElement.value = '';
         this._textarea.nativeElement.focus();
         this.translation = null;
+        this.isTranslating = false;
+        this._cancelRequest = true;
     }
 }
