@@ -1,45 +1,63 @@
 {
     "extends": [
-      "stylelint-config-standard",
-      "stylelint-config-prettier"
+        "stylelint-config-standard",
+        "stylelint-config-prettier"
     ],
     "rules": {
-      "at-rule-empty-line-before": ["always", {
-        "except": [
-          "after-same-name",
-          "inside-block"
+        "at-rule-empty-line-before": [
+            "always",
+            {
+                "except": [
+                    "after-same-name",
+                    "inside-block"
+                ],
+                "ignore": [
+                    "after-comment"
+                ]
+            }
         ],
-        "ignore": [
-          "after-comment"
+        "at-rule-no-unknown": [
+            true,
+            {
+                "ignoreAtRules": [
+                    "content",
+                    "each",
+                    "extend",
+                    "for",
+                    "function",
+                    "if",
+                    "import",
+                    "include",
+                    "mixin",
+                    "while"
+                ]
+            }
+        ],
+        "selector-type-no-unknown": [
+            true,
+            {
+                "ignore": [
+                    "custom-elements"
+                ]
+            }
+        ],
+        "unit-whitelist": [
+            "em",
+            "rem",
+            "s",
+            "px",
+            "%",
+            "vw",
+            "vh"
+        ],
+        "no-descending-specificity": false,
+        "selector-pseudo-element-no-unknown": [
+            true,
+            {
+                "ignorePseudoElements": [
+                    "/^ng-/"
+                ]
+            }
         ]
-      }],
-      "at-rule-no-unknown": [true, {
-        "ignoreAtRules": [
-          "content",
-          "each",
-          "extend",
-          "for",
-          "function",
-          "if",
-          "import",
-          "include",
-          "mixin",
-          "while"
-        ]
-      }],
-      "selector-type-no-unknown": [true, {
-        "ignore": [
-          "custom-elements"
-        ]
-      }],
-      "unit-whitelist": [
-        "em",
-        "rem",
-        "s",
-        "px",
-        "%",
-        "vw",
-        "vh"
-      ]
     }
 }
