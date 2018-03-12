@@ -56,9 +56,7 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     constructor(
         private _ottomanService: OttomanService,
         private _snackbarService: SnackbarService
-    ) {
-        this._glossary = [];
-    }
+    ) {}
 
     public ngAfterViewInit(): void {
         this._subscription = fromEvent(this._textarea.nativeElement, 'input')
@@ -79,6 +77,7 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
             .subscribe(
                 (t: Translation) => {
                     if (!this._cancelRequest) {
+                        this._glossary = [];
                         this.translation = t;
                         this.isTranslating = false;
                     }
