@@ -1,4 +1,4 @@
-@import 'mixins';
+@import 'variables', 'mixins';
 
 :host {
     @include flex($justify: center);
@@ -79,6 +79,33 @@ mat-card {
         p {
             font-size: 1.5rem;
             font-weight: 500;
+        }
+    }
+}
+
+mat-card-actions {
+    @include flex();
+    @include respond-to(xs) {
+        justify-content: space-around;
+    }
+
+    button {
+        @include respond-to(xs) {
+            flex-grow: 0;
+        }
+
+        flex: 1 1 35rem;
+    }
+}
+
+mat-list-option {
+    ::ng-deep {
+        .mat-list-text {
+            @include respond-to(xs) {
+                font-size: 1.6rem;
+            }
+
+            font-size: 1.3rem;
         }
     }
 }

@@ -47,6 +47,7 @@ import { OttomanService } from '../../services/ottoman.service';
 })
 export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     private _cancelRequest: boolean;
+    private _glossary: string[];
     private _subscription: Subscription;
     public isTranslating: boolean;
     public translation: Translation;
@@ -55,7 +56,9 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     constructor(
         private _ottomanService: OttomanService,
         private _snackbarService: SnackbarService
-    ) {}
+    ) {
+        this._glossary = [];
+    }
 
     public ngAfterViewInit(): void {
         this._subscription = fromEvent(this._textarea.nativeElement, 'input')
@@ -90,6 +93,19 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
 
     public ngOnDestroy(): void {
         this._subscription.unsubscribe();
+    }
+
+    /**
+     * Adds/removes translations
+     * @param {string} entry The translation that should be added to the glossary
+     */
+    public toggle(entry: string): void {
+        const idx = this._glossary.indexOf(entry);
+        if (idx < 0) {
+            this._glossary.push(entry);
+        } else {
+            this._glossary.splice(idx, 1);
+        }
     }
 
     /**

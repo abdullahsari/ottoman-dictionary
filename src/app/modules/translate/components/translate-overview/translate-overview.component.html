@@ -16,17 +16,27 @@
 </mat-card>
 <mat-card [@popAnimation] *ngIf="translation">
     <mat-card-title>
-            {{translation.searched}} ({{translation.results.length}} results)
+        {{translation.searched}} ({{translation.results.length}} results)
     </mat-card-title>
     <mat-card-content>
         <p *ngIf="!translation.results.length">
             There is no translation for this word.
             <span class="emoji">😞</span>
         </p>
-        <mat-list *ngIf="translation.results.length">
-            <mat-list-item *ngFor="let result of translation.results">
+        <mat-selection-list #msl [hidden]="translation.results.length">
+            <mat-list-option (selectionChange)="toggle(result)" *ngFor="let result of translation.results">
                 {{result}}
-            </mat-list-item>
-        </mat-list>
+            </mat-list-option>
+        </mat-selection-list>
     </mat-card-content>
+    <mat-card-actions *ngIf="translation.results.length">
+        <button [disabled]="msl.selectedOptions.isEmpty()"
+                mat-raised-button
+                color="accent">
+            <span class="icon-btn">
+                <span>Glossary</span>
+                <mat-icon>favorite</mat-icon>
+            </span>
+        </button>
+    </mat-card-actions>
 </mat-card>
