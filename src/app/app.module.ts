@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import {
     MatButtonModule,
     MatIconModule,
+    MatListModule,
     MatSidenavModule,
     MatToolbarModule,
 } from '@angular/material';
@@ -20,6 +21,7 @@ import { TranslateModule } from './modules/translate/translate.module';
 const materials = [
     MatButtonModule,
     MatIconModule,
+    MatListModule,
     MatSidenavModule,
     MatToolbarModule,
 ];

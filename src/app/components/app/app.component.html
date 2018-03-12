@@ -2,6 +2,18 @@
     <mat-sidenav #snav
                  [mode]="mobileQuery.matches ? 'side' : 'over'"
                  [opened]="mobileQuery.matches ? true : false">
+        <mat-nav-list>
+            <a *ngFor="let link of navLinks"
+               [routerLink]="link.path"
+               routerLinkActive #rla="routerLinkActive"
+               [class.active]="rla.isActive"
+               (click)="!mobileQuery.matches && snav.close()">
+                <mat-list-item>
+                    <mat-icon matListIcon>{{link.icon}}</mat-icon>
+                    <p matLine>{{link.label}}</p>
+                </mat-list-item>
+            </a>
+        </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar color="primary">

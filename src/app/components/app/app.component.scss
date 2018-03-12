@@ -1,4 +1,4 @@
-@import 'variables', 'mixins', '~@angular/material/theming';
+@import 'variables', 'mixins', '~@angular/material/theming', 'theme';
 
 :host {
     display: block;
@@ -57,6 +57,10 @@ mat-icon {
     @include icon-size(3rem);
 }
 
+mat-list-item {
+    width: 100%;
+}
+
 mat-toolbar {
     padding: 0;
     position: sticky;
@@ -66,4 +70,11 @@ mat-toolbar {
 
 span {
     @include flex();
+}
+
+.active {
+    mat-icon,
+    p {
+        color: mat-color($app-accent);
+    }
 }
