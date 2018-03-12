@@ -1,10 +1,17 @@
-@import 'variables', 'mixins', '~@angular/material/theming';
+@import 'variables', 'mixins', '~@angular/material/theming', 'theme';
 
 :host {
     display: block;
 }
 
-a {
+.active {
+    mat-icon,
+    p {
+        color: mat-color($app-accent);
+    }
+}
+
+div {
     @include flex(null, center, center);
 
     height: 100%;
@@ -18,7 +25,6 @@ button {
 }
 
 h1 {
-    line-height: 2;
     padding-left: 1rem;
 }
 
@@ -57,13 +63,13 @@ mat-icon {
     @include icon-size(3rem);
 }
 
+mat-list-item {
+    width: 100%;
+}
+
 mat-toolbar {
     padding: 0;
     position: sticky;
     top: 0;
     z-index: 2;
-}
-
-span {
-    @include flex();
 }

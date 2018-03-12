@@ -1,6 +1,8 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 
+import { NavLink } from '../../shared/models/nav-link.interface';
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -9,6 +11,7 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 export class AppComponent implements OnDestroy, OnInit {
     private _mobileQueryListener: () => void;
     public mobileQuery: MediaQueryList;
+    public navLinks: NavLink[];
 
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
@@ -24,5 +27,8 @@ export class AppComponent implements OnDestroy, OnInit {
         this._mobileQueryListener = () =>
             this._changeDetectorRef.detectChanges();
         this.mobileQuery.addListener(this._mobileQueryListener);
+        this.navLinks = [
+            { icon: 'translate', label: 'Translate', path: 'translate' },
+        ];
     }
 }
