@@ -1,6 +1,13 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 
+import { DOMEventsService } from '../../services/dom-events.service';
 import { NavLink } from '../../shared/models/nav-link.interface';
 
 @Component({
@@ -8,15 +15,20 @@ import { NavLink } from '../../shared/models/nav-link.interface';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnDestroy, OnInit {
+export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
     private _mobileQueryListener: () => void;
     public mobileQuery: MediaQueryList;
     public navLinks: NavLink[];
 
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
+        private _domEventsService: DOMEventsService,
         private _mediaMatcher: MediaMatcher
     ) {}
+
+    public ngAfterViewInit(): void {
+        this._domEventsService.triggerOnDocument('appready');
+    }
 
     public ngOnDestroy(): void {
         this.mobileQuery.removeListener(this._mobileQueryListener);
