@@ -5,68 +5,198 @@
 -->
 <html lang="en">
 <head>
-    <base href="/" />
-    <meta charset="utf-8" />
+    <base href="/"/>
+    <meta charset="utf-8"/>
     <title>Personal Dictionary</title>
 
     <!-- Mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="theme-color" content="#3F51B5" />
-    <link rel="manifest" href="/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="theme-color" content="#424242"/>
+    <link rel="manifest" href="/manifest.json"/>
 
     <!-- Icons -->
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-256x256.png" sizes="256x256" />
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-128x128.png" sizes="128x128" />
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-64x64.png" sizes="64x64" />
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-256x256.png" sizes="256x256"/>
+    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-128x128.png" sizes="128x128"/>
+    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-64x64.png" sizes="64x64"/>
+    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-32x32.png" sizes="32x32"/>
 </head>
 <body>
-    <app-root>
-        <style>
-            body {
-                margin: 0;
+<app-root></app-root>
+<div class="bootstrap-container">
+    <style>
+        .bootstrap-container img {
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            margin: -62.5px -62.5px 0;
+            width: 125px;
+            height: 125px;
+            animation: fade .75s alternate infinite;
+        }
+
+        .bootstrap-container p {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+        }
+
+        .bootstrap-container span {
+            font-size: 2em;
+            height: 250px;
+            position: absolute;
+            width: 20px;
+            left: 0;
+            top: 0;
+            transform-origin: bottom center;
+        }
+
+        .bootstrap-container .bootstrap {
+            background-color: #424242;
+            bottom: 0;
+            color: #E91E63;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, sans-serif;
+            left: 0;
+            position: fixed;
+            right: 0;
+            transition: opacity ease-in .75s;
+            top: 0;
+            user-select: none;
+            z-index: 13333333333333333333333333333337;
+        }
+
+        .bootstrap-container .char1 {
+            transform: rotate(-18deg);
+        }
+
+        .bootstrap-container .char2 {
+            transform: rotate(-6deg);
+        }
+
+        .bootstrap-container .char3 {
+            transform: rotate(6deg);
+        }
+
+        .bootstrap-container .char4 {
+            transform: rotate(18deg);
+        }
+
+        .bootstrap-container .loaded {
+            opacity: 0;
+        }
+
+        .bootstrap-container .spinner {
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            margin: -100px -100px 0;
+            width: 200px;
+            height: 200px;
+            border: 3px solid transparent;
+            border-top-color: #E91E63;
+            animation: spin 2s linear infinite;
+        }
+
+        .bootstrap-container .spinner:after {
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 3px solid transparent;
+            border-top-color: #F44336;
+            animation: spin 1.5s linear infinite
+        }
+
+        .bootstrap-container .spinner:before {
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 3px solid transparent;
+            border-top-color: #FFF;
+            animation: spin 3s linear infinite;
+        }
+
+        .bootstrap-container .spinner,
+        .bootstrap-container .spinner:after,
+        .bootstrap-container .spinner:before {
+            border-radius: 50%;
+        }
+
+        .bootstrap-container .spinner:after,
+        .bootstrap-container .spinner:before {
+            content: "";
+            position: absolute;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0);
             }
 
-            app-root {
-                align-items: center;
-                color: rgba(0, 0, 0, 0.2);
-                display: flex;
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, sans-serif;
-                font-size: 9rem;
-                height: 100vh;
-                justify-content: center;
-                text-transform: uppercase;
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 1;
             }
 
-            span {
-                animation: letters 1.5s ease-out infinite;
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @media screen and (min-width: 601px) {
+            .bootstrap-container img {
+                margin: -125px -125px 0;
+                width: 250px;
+                height: 250px;
             }
 
-            span:nth-of-type(2) {
-                animation-delay: .25s;
-                padding-left: .5em;
-                padding-right: .5em;
+            .bootstrap-container span {
+                font-size: 3em;
+                height: 400px;
             }
 
-            span:last-of-type {
-                animation-delay: .5s;
+            .bootstrap-container p {
+                top: 25%;
             }
 
-            @keyframes letters {
-                50% {
-                    transform: translateY(-1rem);
-                }
-                100% {
-                    transform: translateY(0);
-                }
+            .bootstrap-container .spinner {
+                margin: -200px -200px 0;
+                width: 400px;
+                height: 400px;
             }
-        </style>
-
-        <span>M</span><span>A</span><span>S</span>
-    </influo-root>
-    <noscript>
-        <p>You cannot use this application unless you reactivate JavaScript...</p>
-    </noscript>
+        }
+    </style>
+    <div class="bootstrap">
+        <div class="spinner"></div>
+        <img src="assets/img/tughra.png" alt="Ottoman Tughra"/>
+        <p>
+            <span class="char1">S</span>
+            <span class="char2">a</span>
+            <span class="char3">r</span>
+            <span class="char4">ı</span>
+        </p>
+    </div>
+    <script>
+        const handleAppReady = () => {
+            document.removeEventListener('appready', handleAppReady);
+            const container = document.querySelector('.bootstrap-container');
+            const bootstrap = document.querySelector('.bootstrap');
+            bootstrap.classList.add('loaded');
+            setTimeout(() => {
+                container.parentNode.removeChild(container);
+            }, 1000);
+        };
+        document.addEventListener('appready', handleAppReady);
+    </script>
+</div>
+<noscript>
+    <p>You cannot use this application unless you reactivate JavaScript...</p>
+</noscript>
 </body>
 </html>
