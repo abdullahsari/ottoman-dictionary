@@ -17,6 +17,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
 import { TranslateModule } from './modules/translate/translate.module';
+import { DOMEventsService } from './services/dom-events.service';
 
 const materials = [
     MatButtonModule,
@@ -40,6 +41,7 @@ const materials = [
         TranslateModule,
         ...materials,
     ],
+    providers: [DOMEventsService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
