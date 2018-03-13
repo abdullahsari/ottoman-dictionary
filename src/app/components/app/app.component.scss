@@ -29,9 +29,14 @@ h1 {
 }
 
 img {
+    @include respond-to(xs) {
+        width: 6rem;
+        height: 75%;
+    }
+
     filter: brightness(0) invert(1);
     width: 4rem;
-    height: 100%;
+    height: 60%;
 }
 
 main {
