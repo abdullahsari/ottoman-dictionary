@@ -1,4 +1,4 @@
-# Personal Dictionary
+# Ottoman Dictionary
 
 A PWA to make my life easier when attending courses using my notebook or listening to talks with my smartphone. This application is built with **Angular**. Head over to [Angular's repository](https://github.com/angular/angular) if you'd like more information.
 
