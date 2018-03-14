@@ -7,6 +7,7 @@ import {
     OnInit,
 } from '@angular/core';
 
+import { AuthService } from '../../services/auth.service';
 import { DOMEventsService } from '../../services/dom-events.service';
 import { NavLink } from '../../shared/models/nav-link.interface';
 
@@ -21,6 +22,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
     public navLinks: NavLink[];
 
     constructor(
+        public authService: AuthService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _domEventsService: DOMEventsService,
         private _mediaMatcher: MediaMatcher
