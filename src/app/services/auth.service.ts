@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 
 import { User, auth } from 'firebase/app';
+
 /**
  * Service for handling Firebase authentication
  * @author Muhammed Sari <hi@muhammedsari.me>
