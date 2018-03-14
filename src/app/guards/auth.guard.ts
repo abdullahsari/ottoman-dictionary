@@ -7,6 +7,10 @@ import { tap } from 'rxjs/operators/tap';
 
 import { AuthService } from '../services/auth.service';
 
+/**
+ * This guard only allows access to a route if the user IS authenticated
+ * @author Muhammed Sari <hi@muhammedsari.me>
+ */
 @Injectable()
 export class AuthGuard implements CanActivate {
     constructor(private _authService: AuthService, private _router: Router) {}
