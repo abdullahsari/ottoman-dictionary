@@ -6,6 +6,7 @@ import {
     OnDestroy,
     OnInit,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
 import { DOMEventsService } from '../../services/dom-events.service';
@@ -25,7 +26,8 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
         public authService: AuthService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _domEventsService: DOMEventsService,
-        private _mediaMatcher: MediaMatcher
+        private _mediaMatcher: MediaMatcher,
+        private _router: Router
     ) {}
 
     public ngAfterViewInit(): void {
@@ -44,5 +46,10 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
         this.navLinks = [
             { icon: 'translate', label: 'Translate', path: 'translate' },
         ];
+    }
+
+    public signOut(): void {
+        this.authService.logOut();
+        this._router.navigate(['/login']);
     }
 }

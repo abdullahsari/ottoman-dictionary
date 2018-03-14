@@ -18,6 +18,7 @@
     background-image: url(../../../assets/img/material-cover.jpg);
     background-size: cover;
     height: 15.75rem;
+    position: relative;
 
     div {
         height: 2.5rem;
@@ -61,6 +62,7 @@
             height: 5rem;
             position: absolute;
             left: 0;
+            bottom: 0;
             width: 100%;
             transform: rotate(180deg);
         }
@@ -109,6 +111,10 @@ main {
     }
 
     padding: map-get($side-offset, xs) map-get($side-offset, xs) 1rem;
+}
+
+mat-divider {
+    margin: 0.8rem 0;
 }
 
 mat-sidenav {

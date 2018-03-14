@@ -11,7 +11,6 @@
                     <span>{{user.email}}</span>
                 </p>
             </div>
-            <mat-divider></mat-divider>
             <mat-nav-list>
                 <a *ngFor="let link of navLinks"
                    [routerLink]="link.path"
@@ -22,6 +21,11 @@
                         <p matLine>{{link.label}}</p>
                     </mat-list-item>
                 </a>
+                <mat-divider></mat-divider>
+                <mat-list-item (click)="signOut(); snav.close()">
+                    <mat-icon matListIcon>power_settings_new</mat-icon>
+                    <p matLine>Sign out</p>
+                </mat-list-item>
             </mat-nav-list>
         </ng-container>
     </mat-sidenav>
