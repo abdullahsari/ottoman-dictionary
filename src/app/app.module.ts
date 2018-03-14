@@ -17,7 +17,11 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { environment } from '../environments/environment';
 
-import { AppRoutingModule, declarations } from './app-routing.module';
+import {
+    AppRoutingModule,
+    declarations,
+    providers,
+} from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
 import { TranslateModule } from './modules/translate/translate.module';
 import { AuthService } from './services/auth.service';
@@ -48,7 +52,7 @@ const materials = [
         TranslateModule,
         ...materials,
     ],
-    providers: [AuthService, DOMEventsService],
+    providers: [AuthService, DOMEventsService, ...providers],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

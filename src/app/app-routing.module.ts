@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const declarations = [LoginComponent];
+export const providers = [AuthGuard];
 
 const routes: Routes = [
     {
@@ -12,6 +14,7 @@ const routes: Routes = [
     },
     {
         path: 'translate',
+        canActivate: [AuthGuard],
         loadChildren: './modules/translate/translate.module#TranslateModule',
     },
     {
