@@ -14,7 +14,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { environment } from '../environments/environment';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, declarations } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
 import { TranslateModule } from './modules/translate/translate.module';
 import { DOMEventsService } from './services/dom-events.service';
@@ -28,7 +28,7 @@ const materials = [
 ];
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, ...declarations],
     imports: [
         AppRoutingModule,
         BrowserAnimationsModule,
