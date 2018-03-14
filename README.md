@@ -58,4 +58,4 @@ The sole targeted browser is Google Chrome. The application may (not) work on ot
 
 ## License
 
-[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/abdullahsari/personal-dictionary/master/LICENSE)
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/abdullahsari/ottoman-dictionary/master/LICENSE)
