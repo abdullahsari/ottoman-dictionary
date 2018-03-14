@@ -136,16 +136,16 @@
         <img src="assets/img/tughra.png" alt="Ottoman Tughra"/>
     </div>
     <script>
-        const handleAppReady = () => {
-            document.removeEventListener('appready', handleAppReady);
+        const handleReady = () => {
             const container = document.querySelector('.bootstrap-container');
             const bootstrap = document.querySelector('.bootstrap');
             bootstrap.classList.add('loaded');
-            setTimeout(() => {
-                container.parentNode.removeChild(container);
-            }, 1000);
+            setTimeout(() => { container.parentNode.removeChild(container); }, 1000);
         };
-        document.addEventListener('appready', handleAppReady);
+        Promise.all([
+            new Promise(resolve => { window.addEventListener('load', resolve); }),
+            new Promise(resolve => { document.addEventListener('appready', resolve); }),
+        ]).then(handleReady);
     </script>
 </div>
 <noscript>
