@@ -20,6 +20,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule, declarations } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
 import { TranslateModule } from './modules/translate/translate.module';
+import { AuthService } from './services/auth.service';
 import { DOMEventsService } from './services/dom-events.service';
 
 const materials = [
@@ -47,7 +48,7 @@ const materials = [
         TranslateModule,
         ...materials,
     ],
-    providers: [DOMEventsService],
+    providers: [AuthService, DOMEventsService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
