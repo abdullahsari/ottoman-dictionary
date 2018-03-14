@@ -5,12 +5,12 @@
             "email": "hi@muhammedsari.me"
         }
     ],
-    "description": "Personal Dictionary PWA",
+    "description": "Ottoman Dictionary PWA",
     "repository": {
         "type": "git",
-        "url": "https://github.com/abdullahsari/personal-dictionary"
+        "url": "https://github.com/abdullahsari/ottoman-dictionary"
     },
-    "name": "personal-dictionary",
+    "name": "ottoman-dictionary",
     "version": "0.0.0",
     "license": "MIT",
     "scripts": {
