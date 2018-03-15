@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { environment } from '../environments/environment';
 
@@ -40,7 +40,7 @@ const materials = [
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
-        AngularFireDatabaseModule,
+        AngularFirestoreModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         BrowserModule,
