@@ -20,8 +20,8 @@ export class LoginComponent {
      * Displays a popup to let the user log in using Google
      */
     public logIn(): void {
-        this._authService.googleLogin().then(credentials => {
-            if (credentials) this._router.navigate([REDIRECT_PATH]);
+        this._authService.googleLogin().then(() => {
+            this._router.navigate([REDIRECT_PATH]);
         });
     }
 }
