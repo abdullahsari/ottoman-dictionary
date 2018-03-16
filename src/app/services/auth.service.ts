@@ -62,7 +62,7 @@ export class AuthService {
         const data = {
             displayName,
             email,
-            lastActive: new Date().getTime(),
+            lastActive: Date.now(),
             photoURL,
             status: Status.Online,
         };
