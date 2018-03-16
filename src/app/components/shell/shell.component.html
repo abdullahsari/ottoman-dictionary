@@ -1,0 +1,48 @@
+<mat-sidenav-container>
+    <mat-sidenav #snav
+                 [mode]="mobileQuery.matches ? 'side' : 'over'"
+                 [opened]="mobileQuery.matches ? true : false">
+        <ng-container *ngIf="authService.user | async as user">
+            <div class="header">
+                <div></div>
+                <img [src]="user.photoURL" alt="Avatar"/>
+                <p>
+                    <span>{{user.displayName}}</span>
+                    <span>{{user.email}}</span>
+                </p>
+            </div>
+            <mat-nav-list>
+                <a *ngFor="let link of navLinks"
+                   [routerLink]="link.path"
+                   routerLinkActive="active"
+                   (click)="!mobileQuery.matches && snav.close()">
+                    <mat-list-item>
+                        <mat-icon matListIcon>{{link.icon}}</mat-icon>
+                        <p matLine>{{link.label}}</p>
+                    </mat-list-item>
+                </a>
+                <mat-divider></mat-divider>
+                <mat-list-item (click)="signOut(); snav.close()">
+                    <mat-icon matListIcon>power_settings_new</mat-icon>
+                    <p matLine>Sign out</p>
+                </mat-list-item>
+            </mat-nav-list>
+        </ng-container>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button (click)="snav.toggle()" type="button" mat-button>
+                <mat-icon>{{snav.opened ? 'arrow_back' : 'menu'}}</mat-icon>
+            </button>
+            <div class="title">
+                <img class="logo"
+                     src="../../../assets/img/logo.svg"
+                     alt="Tughra"/>
+                <h1>Ottoman Dictionary</h1>
+            </div>
+        </mat-toolbar>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>
