@@ -8,7 +8,6 @@ import { switchMap } from 'rxjs/operators/switchMap';
 
 import { Status } from '../shared/models/status.enum';
 import { User } from '../shared/models/user.interface';
-
 /**
  * Service for handling Firebase authentication
  * @author Muhammed Sari <hi@muhammedsari.me>
@@ -34,15 +33,30 @@ export class AuthService {
     }
 
     /**
+     * Uses Facebook as an authentication provider
+     * @returns {Promise<any>} Facebook login result
+     */
+    public facebookLogin(): Promise<any> {
+        return this.oAuthLogin(new auth.FacebookAuthProvider());
+    }
+
+    /**
      * Uses Google as an authentication provider
-     * @returns {Promise<any>} The result of the login process
+     * @returns {Promise<any>} Google login result
      */
     public googleLogin(): Promise<any> {
-        return this._afAuth.auth
-            .signInWithPopup(new auth.GoogleAuthProvider())
-            .then(credential => {
-                this.updateUserData(credential);
-            });
+        return this.oAuthLogin(new auth.GoogleAuthProvider());
+    }
+
+    /**
+     * Generic login method using OAuth
+     * @param {firebase.auth.AuthProvider} provider The login method
+     * @returns {Promise<any>} The result of the login process
+     */
+    public oAuthLogin(provider: auth.AuthProvider): Promise<any> {
+        return this._afAuth.auth.signInWithPopup(provider).then(credential => {
+            this.updateUserData(credential);
+        });
     }
 
     /**
