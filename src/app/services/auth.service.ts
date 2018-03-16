@@ -53,8 +53,8 @@ export class AuthService {
     }
 
     /**
-     * Sets the user data to Firestore on login
-     * @param credential
+     * Sets the user data to Firestore
+     * @param credential The user's credentials
      */
     private updateUserData(credential: any): void {
         const { displayName, email, photoURL, uid } = credential.user;
