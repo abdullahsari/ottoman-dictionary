@@ -12,6 +12,12 @@
     width: 100vw;
 }
 
+.anthem {
+    @include floating-action-button();
+
+    position: fixed;
+}
+
 a {
     width: 100%;
 }

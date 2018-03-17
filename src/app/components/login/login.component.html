@@ -21,7 +21,9 @@
         </button>
     </mat-card-content>
     <mat-card-actions>
-        <a href="mailto:hi@muhammedsari.me?subject=Access to Ottoman Dictionary" mat-raised-button color="primary">
+        <a href="mailto:hi@muhammedsari.me?subject=Access to Ottoman Dictionary"
+           mat-raised-button
+           color="primary">
             <span class="icon-btn">
                 <span>Request access</span>
                 <mat-icon>email</mat-icon>
@@ -30,8 +32,16 @@
     </mat-card-actions>
     <mat-card-footer>
         <span>&copy; 2018 -</span>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/muhammed-sari-220012135/">
+        <a target="_blank" rel="noopener noreferrer"
+           href="https://www.linkedin.com/in/muhammed-sari-220012135/">
             Muhammed Sari
         </a>
     </mat-card-footer>
 </mat-card>
+<button 
+        class="anthem"
+        (click)="toggleAnthem()"
+        mat-mini-fab
+        color="accent">
+    <mat-icon>{{listening ? 'volume_off' : 'volume_up'}}</mat-icon>
+</button>

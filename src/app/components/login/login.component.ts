@@ -16,6 +16,8 @@ import { SocialType } from '../../shared/models/social-type.enum';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements AfterViewInit {
+    public listening: boolean;
+
     constructor(
         private _authService: AuthService,
         private _domEventsService: DOMEventsService,
@@ -41,5 +43,12 @@ export class LoginComponent implements AfterViewInit {
         login.then(() => {
             this._router.navigate([REDIRECT_PATH]);
         });
+    }
+
+    /**
+     * Either plays the Ottoman anthem or mutes it
+     */
+    public toggleAnthem(): void {
+        this.listening = !this.listening;
     }
 }
