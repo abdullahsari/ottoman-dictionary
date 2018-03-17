@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 import { APP_READY_EVENT, REDIRECT_PATH } from '../../app.constants';
 import { AuthService } from '../../services/auth.service';
-import { DOMEventsService } from '../../services/dom-events.service';
 import { SocialType } from '../../shared/models/social-type.enum';
+import { DOMEventsService } from '../../shared/services/dom-events.service';
 
 /**
  * The login screen

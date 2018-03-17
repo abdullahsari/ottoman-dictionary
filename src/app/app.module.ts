@@ -1,14 +1,6 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import {
-    MatButtonModule,
-    MatCardModule,
-    MatIconModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule,
-} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -26,16 +18,7 @@ import {
 import { AppComponent } from './components/app/app.component';
 import { TranslateModule } from './modules/translate/translate.module';
 import { AuthService } from './services/auth.service';
-import { DOMEventsService } from './services/dom-events.service';
-
-const materials = [
-    MatButtonModule,
-    MatCardModule,
-    MatIconModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule,
-];
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     declarations: [AppComponent, ...declarations],
@@ -51,10 +34,10 @@ const materials = [
         ServiceWorkerModule.register('/ngsw-worker.js', {
             enabled: environment.production,
         }),
+        SharedModule,
         TranslateModule,
-        ...materials,
     ],
-    providers: [AuthService, DOMEventsService, ...providers],
+    providers: [AuthService, ...providers],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

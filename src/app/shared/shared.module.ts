@@ -1,11 +1,34 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatSnackBarModule } from '@angular/material';
+import {
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatIconModule,
+    MatListModule,
+    MatProgressBarModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+} from '@angular/material';
 
+import { DOMEventsService } from './services/dom-events.service';
 import { SnackbarService } from './services/snackbar.service';
 
+const materials = [
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatIconModule,
+    MatListModule,
+    MatProgressBarModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+];
+
 @NgModule({
-    imports: [CommonModule, MatSnackBarModule],
-    providers: [SnackbarService],
+    imports: [...materials],
+    exports: [...materials],
+    providers: [DOMEventsService, SnackbarService],
 })
 export class SharedModule {}
