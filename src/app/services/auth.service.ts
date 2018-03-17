@@ -78,6 +78,7 @@ export class AuthService {
             email,
             lastActive: Date.now(),
             photoURL,
+            provider: credential.additionalUserInfo.providerId.split('.')[0],
             status: Status.Online,
         };
         userRef.set(data);
