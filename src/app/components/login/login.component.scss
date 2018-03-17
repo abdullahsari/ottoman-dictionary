@@ -1,7 +1,7 @@
 @import 'variables', 'mixins';
 
 :host {
-    @include flex(column, null, center);
+    @include flex(column, center, center);
     @include respond-to(xs) {
         background-image: url('../../../assets/img/fsm.jpg');
     }
@@ -36,7 +36,6 @@ div {
 h1 {
     @include respond-to(xs) {
         font-size: 6rem;
-        margin-top: 20rem;
     }
     @include respond-to(sm) {
         font-size: 10rem;
@@ -45,7 +44,6 @@ h1 {
     color: black;
     font-family: 'Ottoman', sans-serif;
     font-size: 4rem;
-    margin-top: 15rem;
     z-index: 1;
 }
 
