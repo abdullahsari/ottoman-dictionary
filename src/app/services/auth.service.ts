@@ -54,9 +54,11 @@ export class AuthService {
      * @returns {Promise<any>} The result of the login process
      */
     public oAuthLogin(provider: auth.AuthProvider): Promise<any> {
-        return this._afAuth.auth.signInWithPopup(provider).then(credential => {
-            this.updateUserData(credential);
-        });
+        return this._afAuth.auth
+            .signInWithRedirect(provider)
+            .then(credential => {
+                this.updateUserData(credential);
+            });
     }
 
     /**
