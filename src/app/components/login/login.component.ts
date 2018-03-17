@@ -28,7 +28,6 @@ export class LoginComponent implements AfterViewInit {
 
     /**
      * Displays a popup to let the user log in using Google
-     * TODO - Fix and add SocialType argument
      */
     public signIn(type: string): void {
         let login;
