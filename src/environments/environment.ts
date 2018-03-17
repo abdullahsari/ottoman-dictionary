@@ -5,5 +5,5 @@ export const environment = {
         databaseURL: 'ADD OWN URL',
         projectId: 'ADD OWN ID',
     },
-    production: true,
+    production: false,
 };

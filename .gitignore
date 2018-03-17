@@ -38,3 +38,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Sensitive
+/src/environments/environment.ts
+/src/environments/environment.prod.ts
