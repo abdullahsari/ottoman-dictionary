@@ -10,6 +10,7 @@
                     <span>{{user.displayName}}</span>
                     <span>{{user.email}}</span>
                 </p>
+                <mat-icon [svgIcon]="'social:' + user.provider"></mat-icon>
             </div>
             <mat-nav-list>
                 <a *ngFor="let link of navLinks"

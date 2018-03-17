@@ -35,6 +35,12 @@
         width: $size;
     }
 
+    mat-icon {
+        position: absolute;
+        right: $offset;
+        top: 4rem;
+    }
+
     p {
         @include flex(column);
 
