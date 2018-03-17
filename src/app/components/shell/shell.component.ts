@@ -44,7 +44,7 @@ export class ShellComponent implements AfterViewInit, OnDestroy, OnInit {
             this._changeDetectorRef.detectChanges();
         this.mobileQuery.addListener(this._mobileQueryListener);
         this.navLinks = [
-            { icon: 'translate', label: 'Translate', path: 'translate' },
+            { icon: 'translate', label: 'Translate', path: '/translate' },
         ];
     }
 
