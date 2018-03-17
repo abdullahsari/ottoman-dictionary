@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import {
     MatButtonModule,
+    MatCardModule,
     MatIconModule,
     MatListModule,
     MatSidenavModule,
@@ -29,6 +30,7 @@ import { DOMEventsService } from './services/dom-events.service';
 
 const materials = [
     MatButtonModule,
+    MatCardModule,
     MatIconModule,
     MatListModule,
     MatSidenavModule,
