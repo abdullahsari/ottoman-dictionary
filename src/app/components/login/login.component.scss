@@ -1,0 +1,77 @@
+@import 'variables', 'mixins';
+
+:host {
+    @include flex(column, center, center);
+    @include respond-to(xs) {
+        background-image: url('../../../assets/img/fsm.jpg');
+    }
+
+    background: url('../../../assets/img/mosque.png') no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+
+.anthem {
+    @include floating-action-button();
+
+    position: fixed;
+}
+
+a {
+    width: 100%;
+}
+
+div {
+    background: rgba(127, 127, 127, 0.5)
+        radial-gradient(#000 33%, transparent 33%);
+    background-size: 0.3rem 0.3rem;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+h1 {
+    @include respond-to(xs) {
+        font-size: 6rem;
+    }
+    @include respond-to(sm) {
+        font-size: 10rem;
+    }
+
+    color: black;
+    font-family: 'Ottoman', sans-serif;
+    font-size: 4rem;
+    z-index: 1;
+}
+
+mat-card {
+    @include respond-to(xs) {
+        width: 50rem;
+    }
+
+    flex: 0;
+    width: 80%;
+}
+
+mat-card-content {
+    @include flex($justify: space-around);
+
+    flex-wrap: wrap;
+
+    button {
+        flex: 0 0 20rem;
+    }
+}
+
+mat-card-footer {
+    font-weight: 500;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+
+    a {
+        color: inherit;
+    }
+}

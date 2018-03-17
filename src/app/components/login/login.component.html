@@ -1,0 +1,46 @@
+<div></div>
+<h1>
+    <span>Ottoman</span>
+    <span>Dictionary</span>
+</h1>
+<mat-card>
+    <h2 mat-card-title>Sign in</h2>
+    <h3 mat-card-subtitle>You can sign in using one of the methods below</h3>
+    <mat-card-content>
+        <button (click)="signIn('FACEBOOK')" mat-button color="accent">
+            <span class="icon-btn">
+                <mat-icon svgIcon="social:facebook"></mat-icon>
+                <span>Sign in with Facebook</span>
+            </span>
+        </button>
+        <button (click)="signIn('GOOGLE')" mat-button color="accent">
+            <span class="icon-btn">
+                <mat-icon svgIcon="social:google"></mat-icon>
+                <span>Sign in with Google</span>
+            </span>
+        </button>
+    </mat-card-content>
+    <mat-card-actions>
+        <a href="mailto:hi@muhammedsari.me?subject=Access to Ottoman Dictionary"
+           mat-raised-button
+           color="primary">
+            <span class="icon-btn">
+                <span>Request access</span>
+                <mat-icon>email</mat-icon>
+            </span>
+        </a>
+    </mat-card-actions>
+    <mat-card-footer>
+        <span>&copy; 2018 -</span>
+        <a target="_blank" rel="noopener noreferrer"
+           href="https://www.linkedin.com/in/muhammed-sari-220012135/">
+            Muhammed Sari
+        </a>
+    </mat-card-footer>
+</mat-card>
+<button class="anthem"
+        (click)="toggleAnthem()"
+        mat-mini-fab
+        color="accent">
+    <mat-icon>{{listening ? 'volume_off' : 'volume_up'}}</mat-icon>
+</button>

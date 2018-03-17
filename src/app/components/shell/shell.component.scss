@@ -1,0 +1,159 @@
+@import 'variables',
+    'mixins',
+    '../../../../node_modules/@angular/material/theming',
+    'theme';
+
+:host {
+    display: block;
+}
+
+.active {
+    mat-icon,
+    p {
+        color: mat-color($app-accent);
+    }
+}
+
+.header {
+    $size: 5.4rem;
+    $offset: 1.6rem;
+
+    background-image: url(../../../assets/img/material-cover.jpg);
+    background-size: cover;
+    height: 15.75rem;
+    position: relative;
+
+    div {
+        height: 2.5rem;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    img {
+        border-radius: 50%;
+        height: $size;
+        margin: $offset;
+        width: $size;
+    }
+
+    mat-icon {
+        position: absolute;
+        right: $offset;
+        top: 4rem;
+    }
+
+    p {
+        @include flex(column);
+
+        color: $light-primary-text;
+        height: auto;
+        margin-left: $offset;
+
+        &::before {
+            background: -webkit-gradient(
+                linear,
+                left top,
+                left bottom,
+                color-stop(100%, transparent),
+                color-stop(98.2%, rgba(0, 0, 0, 0.002)),
+                color-stop(95.2%, rgba(0, 0, 0, 0.008)),
+                color-stop(91%, rgba(0, 0, 0, 0.021)),
+                color-stop(86.1%, rgba(0, 0, 0, 0.042)),
+                color-stop(80.2%, rgba(0, 0, 0, 0.075)),
+                color-stop(73%, rgba(0, 0, 0, 0.126)),
+                color-stop(65%, rgba(0, 0, 0, 0.194)),
+                color-stop(56.5%, rgba(0, 0, 0, 0.278)),
+                color-stop(47%, rgba(0, 0, 0, 0.382)),
+                color-stop(34%, rgba(0, 0, 0, 0.541)),
+                color-stop(19%, rgba(0, 0, 0, 0.738)),
+                color-stop(0%, black)
+            );
+            content: '';
+            height: 5rem;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            transform: rotate(180deg);
+        }
+
+        span {
+            z-index: 1;
+
+            &:first-of-type {
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.logo {
+    @include respond-to(xs) {
+        width: 6rem;
+        height: 75%;
+    }
+
+    filter: brightness(0) invert(1);
+    width: 4rem;
+    height: 60%;
+}
+
+.title {
+    @include flex(null, center, center);
+
+    height: 100%;
+}
+
+button {
+    @include flex(null, center, center);
+
+    height: 100%;
+    min-width: 8.8rem;
+}
+
+h1 {
+    padding-left: 1rem;
+}
+
+main {
+    @include respond-to(xs) {
+        padding: map-get($side-offset, sm) map-get($side-offset, sm) 1rem;
+    }
+
+    padding: map-get($side-offset, xs) map-get($side-offset, xs) 1rem;
+}
+
+mat-divider {
+    margin: 0.8rem 0;
+}
+
+mat-sidenav {
+    @include respond-to(sm) {
+        width: 32rem;
+    }
+    @include mat-elevation(16);
+
+    width: 28rem;
+}
+
+mat-sidenav-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+mat-icon {
+    @include icon-size(3rem);
+}
+
+mat-list-item {
+    width: 100%;
+}
+
+mat-toolbar {
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}

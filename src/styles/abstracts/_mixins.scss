@@ -29,3 +29,14 @@
         }
     }
 }
+@mixin floating-action-button() {
+    @include respond-to(xs) {
+        bottom: map-get($fab-offset, sm);
+        right: map-get($fab-offset, sm);
+    }
+
+    position: fixed;
+    bottom: map-get($fab-offset, xs);
+    right: map-get($fab-offset, xs);
+    z-index: 998;
+}
