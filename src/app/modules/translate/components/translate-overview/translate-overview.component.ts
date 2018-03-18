@@ -15,8 +15,8 @@ import { filter } from 'rxjs/operators/filter';
 import { pluck } from 'rxjs/operators/pluck';
 import { switchMap } from 'rxjs/operators/switchMap';
 
-import { Translation } from '../../../../shared/models/translation.interface';
-import { SnackbarService } from '../../../../shared/services/snackbar.service';
+import { Translation } from '../../../../common/models/translation.interface';
+import { SnackbarService } from '../../../core/services/snackbar.service';
 import { OttomanService } from '../../services/ottoman.service';
 
 /**

@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { SocialType } from '../../shared/models/social-type.enum';
+import { SocialType } from '../../common/models/social-type.enum';
 
 @Component({
     selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
+    template: '<router-outlet></router-outlet>',
 })
 export class AppComponent {
     constructor(

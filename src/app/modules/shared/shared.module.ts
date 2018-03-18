@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
     MatButtonModule,
@@ -11,10 +12,8 @@ import {
     MatToolbarModule,
 } from '@angular/material';
 
-import { DOMEventsService } from './services/dom-events.service';
-import { SnackbarService } from './services/snackbar.service';
-
-const materials = [
+const modules = [
+    CommonModule,
     MatButtonModule,
     MatCardModule,
     MatDividerModule,
@@ -27,8 +26,7 @@ const materials = [
 ];
 
 @NgModule({
-    imports: [...materials],
-    exports: [...materials],
-    providers: [DOMEventsService, SnackbarService],
+    imports: [...modules],
+    exports: [...modules],
 })
 export class SharedModule {}

@@ -1,10 +1,10 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { APP_READY_EVENT, REDIRECT_PATH } from '../../app.constants';
-import { AuthService } from '../../services/auth.service';
-import { SocialType } from '../../shared/models/social-type.enum';
-import { DOMEventsService } from '../../shared/services/dom-events.service';
+import { APP_READY_EVENT, REDIRECT_PATH } from '../../common/constants';
+import { SocialType } from '../../common/models/social-type.enum';
+import { AuthService } from '../../modules/core/services/auth.service';
+import { DOMEventsService } from '../../modules/core/services/dom-events.service';
 
 /**
  * The login screen

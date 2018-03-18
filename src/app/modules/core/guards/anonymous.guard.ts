@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators/first';
 import { map } from 'rxjs/operators/map';
 import { tap } from 'rxjs/operators/tap';
 
-import { REDIRECT_PATH } from '../app.constants';
+import { REDIRECT_PATH } from '../../../common/constants';
 import { AuthService } from '../services/auth.service';
 
 /**

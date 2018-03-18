@@ -10,15 +10,11 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { environment } from '../environments/environment';
 
-import {
-    AppRoutingModule,
-    declarations,
-    providers,
-} from './app-routing.module';
+import { AppRoutingModule, declarations } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
+import { CoreModule } from './modules/core/core.module';
+import { SharedModule } from './modules/shared/shared.module';
 import { TranslateModule } from './modules/translate/translate.module';
-import { AuthService } from './services/auth.service';
-import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     declarations: [AppComponent, ...declarations],
@@ -34,10 +30,10 @@ import { SharedModule } from './shared/shared.module';
         ServiceWorkerModule.register('/ngsw-worker.js', {
             enabled: environment.production,
         }),
+        CoreModule,
         SharedModule,
         TranslateModule,
     ],
-    providers: [AuthService, ...providers],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

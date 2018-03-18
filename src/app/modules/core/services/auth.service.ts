@@ -6,8 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { switchMap } from 'rxjs/operators/switchMap';
 
-import { Status } from '../shared/models/status.enum';
-import { User } from '../shared/models/user.interface';
+import { Status } from '../../../common/models/status.enum';
+import { User } from '../../../common/models/user.interface';
 /**
  * Service for handling Firebase authentication
  * @author Muhammed Sari <hi@muhammedsari.me>

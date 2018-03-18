@@ -8,9 +8,9 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../services/auth.service';
-import { NavLink } from '../../shared/models/nav-link.interface';
-import { DOMEventsService } from '../../shared/services/dom-events.service';
+import { NavLink } from '../../common/models/nav-link.interface';
+import { AuthService } from '../../modules/core/services/auth.service';
+import { DOMEventsService } from '../../modules/core/services/dom-events.service';
 
 @Component({
     selector: 'app-shell',
