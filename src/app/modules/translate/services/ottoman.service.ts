@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 
-import { REVERSE_PROXY } from '../../../app.constants';
-import { uniquify } from '../../../shared/helpers/utils';
-import { Translation } from '../../../shared/models/translation.interface';
+import { REVERSE_PROXY } from '../../../common/constants';
+import { uniquify } from '../../../common/helpers/utils';
+import { Translation } from '../../../common/models/translation.interface';
 
 /**
  * This service is responsible for anything related to
