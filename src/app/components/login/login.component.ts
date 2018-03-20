@@ -5,6 +5,7 @@ import { APP_READY_EVENT, REDIRECT_PATH } from '../../common/constants';
 import { SocialType } from '../../common/models/social-type.enum';
 import { AuthService } from '../../modules/core/services/auth.service';
 import { DOMEventsService } from '../../modules/core/services/dom-events.service';
+import { PageTitleService } from '../../modules/core/services/page-title.service';
 
 /**
  * The login screen
@@ -22,9 +23,11 @@ export class LoginComponent implements AfterViewInit {
     constructor(
         private _authService: AuthService,
         private _domEventsService: DOMEventsService,
+        public pageTitleService: PageTitleService,
         private _router: Router
     ) {
         this._anthem = new Audio();
+        this.pageTitleService.title = 'Log in';
     }
 
     public ngAfterViewInit(): void {
