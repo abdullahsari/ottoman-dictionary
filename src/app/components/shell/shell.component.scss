@@ -120,10 +120,14 @@ button {
 
 main {
     @include respond-to(xs) {
-        padding: map-get($side-offset, sm) map-get($side-offset, sm) 1rem;
+        margin: map-get($side-offset, sm) map-get($side-offset, sm) 1rem;
+    }
+    @include respond-to(md) {
+        margin: 0 auto;
+        max-width: 76.8rem;
     }
 
-    padding: map-get($side-offset, xs) map-get($side-offset, xs) 1rem;
+    margin: map-get($side-offset, xs) map-get($side-offset, xs) 1rem;
 }
 
 mat-divider {

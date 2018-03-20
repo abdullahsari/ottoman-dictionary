@@ -57,7 +57,7 @@
 }
 
 mat-card {
-    flex: 0 1 76.8rem;
+    flex: 1;
 
     & + & {
         margin-top: 2rem;
@@ -65,7 +65,7 @@ mat-card {
 
     &:first-of-type {
         @include respond-to(md) {
-            margin-top: -8.3rem;
+            margin-top: -5.1rem;
         }
 
         padding-top: 0;
