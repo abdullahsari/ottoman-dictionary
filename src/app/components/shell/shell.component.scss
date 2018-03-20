@@ -1,7 +1,4 @@
-@import 'variables',
-    'mixins',
-    '../../../../node_modules/@angular/material/theming',
-    'theme';
+@import 'variables', 'mixins', '~@angular/material/theming', 'theme';
 
 :host {
     display: block;
@@ -159,8 +156,18 @@ mat-list-item {
 }
 
 mat-toolbar {
-    padding: 0;
-    position: sticky;
-    top: 0;
-    z-index: 2;
+    &:first-of-type {
+        padding: 0;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+
+    &:last-of-type {
+        @include respond-to(xs) {
+            @include flex($align: center);
+        }
+
+        display: none;
+    }
 }

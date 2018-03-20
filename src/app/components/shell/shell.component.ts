@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { NavLink } from '../../common/models/nav-link.interface';
 import { AuthService } from '../../modules/core/services/auth.service';
 import { DOMEventsService } from '../../modules/core/services/dom-events.service';
+import { PageTitleService } from '../../modules/core/services/page-title.service';
 
 @Component({
     selector: 'app-shell',
@@ -27,6 +28,7 @@ export class ShellComponent implements AfterViewInit, OnDestroy, OnInit {
         private _changeDetectorRef: ChangeDetectorRef,
         private _domEventsService: DOMEventsService,
         private _mediaMatcher: MediaMatcher,
+        public pageTitleService: PageTitleService,
         private _router: Router
     ) {}
 

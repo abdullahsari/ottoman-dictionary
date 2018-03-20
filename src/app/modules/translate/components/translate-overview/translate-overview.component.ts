@@ -16,6 +16,7 @@ import { pluck } from 'rxjs/operators/pluck';
 import { switchMap } from 'rxjs/operators/switchMap';
 
 import { Translation } from '../../../../common/models/translation.interface';
+import { PageTitleService } from '../../../core/services/page-title.service';
 import { SnackbarService } from '../../../core/services/snackbar.service';
 import { OttomanService } from '../../services/ottoman.service';
 
@@ -55,8 +56,11 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
 
     constructor(
         private _ottomanService: OttomanService,
+        private _pageTitleService: PageTitleService,
         private _snackbarService: SnackbarService
-    ) {}
+    ) {
+        this._pageTitleService.title = 'Translate';
+    }
 
     public ngAfterViewInit(): void {
         this._subscription = fromEvent(this._textarea.nativeElement, 'input')

@@ -1,10 +1,7 @@
 <div></div>
-<h1>
-    <span>Ottoman</span>
-    <span>Dictionary</span>
-</h1>
+<h1>Ottoman Dictionary</h1>
 <mat-card>
-    <h2 mat-card-title>Sign in</h2>
+    <h2 mat-card-title>{{pageTitleService.title}}</h2>
     <h3 mat-card-subtitle>You can sign in using one of the methods below</h3>
     <mat-card-content>
         <button (click)="signIn('FACEBOOK')" mat-button color="accent">
