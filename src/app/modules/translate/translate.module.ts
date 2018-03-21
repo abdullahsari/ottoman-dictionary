@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 
-import { webSpeechFactory } from '../core/factories/web-speech.factory';
 import { SharedModule } from '../shared/shared.module';
 
 import { TranslateOverviewComponent } from './components/translate-overview/translate-overview.component';
+import { webSpeechFactory } from './factories/web-speech.factory';
 import { OttomanService } from './services/ottoman.service';
 import { SpeechService } from './services/speech.service';
 import { TranslateRoutingModule } from './translate-routing.module';
