@@ -8,6 +8,7 @@ import {
     MatInputModule,
     MatListModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
@@ -24,6 +25,7 @@ const modules = [
     MatProgressBarModule,
     MatSidenavModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     MatToolbarModule,
 ];
 
