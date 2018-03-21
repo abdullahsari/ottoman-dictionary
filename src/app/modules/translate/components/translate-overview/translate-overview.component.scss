@@ -1,9 +1,7 @@
 @import 'variables', 'mixins';
 
 :host {
-    @include flex($justify: center);
-
-    flex-wrap: wrap;
+    @include flex(column);
 }
 
 .input {
