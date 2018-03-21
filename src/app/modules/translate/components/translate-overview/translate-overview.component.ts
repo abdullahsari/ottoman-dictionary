@@ -83,12 +83,15 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
         // Verbal input
         const listen$ = fromEvent(this._speech.nativeElement, 'click').pipe(
             debounceTime(200),
+            tap(() => {
+                this._snackbarService.notify('Listening...');
+            }),
             switchMap(() => this._speechService.listen()),
             catchError(err => {
                 // TODO - prevent unsubscription
                 const message =
                     err.error === 'not-allowed'
-                        ? 'You must grant the required permissions to be able to use the speech-to-text functionality.'
+                        ? 'You must grant the required permissions to be able to use the speech to text functionality.'
                         : 'I think you have not said anything at all.';
                 this._snackbarService.notify(message);
                 return of([]);
