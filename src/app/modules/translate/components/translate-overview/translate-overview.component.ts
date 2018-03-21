@@ -72,31 +72,40 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     }
 
     public ngAfterViewInit(): void {
+        // Text input
         const text$ = fromEvent(this._textarea.nativeElement, 'input').pipe(
             pluck('srcElement', 'value'),
-            tap(words => {
-                if (words === '') this.clear();
-            }),
             debounceTime(500),
-            distinctUntilChanged(),
-            filter(word => word !== '')
+            distinctUntilChanged()
         );
+
+        // Verbal input
         const listen$ = fromEvent(this._speech.nativeElement, 'click').pipe(
+            debounceTime(200),
             switchMap(() => this._speechService.listen()),
-            catchError(() => {
-                this._snackbarService.notify(
-                    'Sorry, could not understand what you said.'
-                );
-                return of('');
+            catchError(err => {
+                // TODO - prevent unsubscription
+                const message =
+                    err.error === 'not-allowed'
+                        ? 'You must grant the required permissions to be able to use the speech-to-text functionality.'
+                        : 'I think you have not said anything at all.';
+                this._snackbarService.notify(message);
+                return of([]);
             }),
             map((res: string[]) => res.join(' ')),
             tap(words => {
                 this._textarea.nativeElement.value = words;
             })
         );
+
+        // Combine input methods
         merge(text$, listen$)
             .pipe(
                 takeUntil(this._unsubscribe$),
+                tap(words => {
+                    if (words === '') this.clear();
+                }),
+                filter(word => word !== ''),
                 switchMap((res: string) => {
                     this.isTranslating = true;
                     this._cancelRequest = false;
