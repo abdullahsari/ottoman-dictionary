@@ -7,7 +7,11 @@
     </div>
     <mat-divider></mat-divider>
     <div class="input">
-        <textarea #input placeholder="Enter a word..."></textarea>
+        <textarea #input
+                  matTextareaAutosize
+                  matAutosizeMinRows="1"
+                  matAutosizeMaxRows="3"
+                  placeholder="Enter a word..."></textarea>
         <button *ngIf="input.value" [@popAnimation] (click)="clear()" mat-icon-button>
             <mat-icon>clear</mat-icon>
         </button>
