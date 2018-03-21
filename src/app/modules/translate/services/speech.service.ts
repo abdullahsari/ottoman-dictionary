@@ -1,18 +1,21 @@
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
+/**
+ * Service for the Web Speech API
+ * @author Muhammed Sari <hi@muhammedsari.me>
+ */
 @Injectable()
 export class SpeechService {
     private readonly LANG: string = 'tr-TR';
-    private _speech: any;
 
-    constructor(@Inject('speech') private _speechRecognition: any) {
-        this._speech = new _speechRecognition();
-        this._speech.lang = this.LANG;
-    }
+    constructor(@Inject('speech') private _speechRecognition: any) {}
 
     public listen(): Observable<string[]> {
         return new Observable<string[]>(observer => {
+            const speech = new this._speechRecognition();
+            speech.lang = this.LANG;
+
             const resultHandler = (e: any) => {
                 observer.next(this.cleanSpeechResults(e.results));
                 observer.complete();
@@ -22,14 +25,14 @@ export class SpeechService {
                 observer.error(err);
             };
 
-            this._speech.addEventListener('result', resultHandler);
-            this._speech.addEventListener('error', errorHandler);
-            this._speech.start();
+            speech.addEventListener('result', resultHandler);
+            speech.addEventListener('error', errorHandler);
+            speech.start();
 
             return () => {
-                this._speech.removeEventListener('result', resultHandler);
-                this._speech.removeEventListener('error', errorHandler);
-                this._speech.abort();
+                speech.removeEventListener('result', resultHandler);
+                speech.removeEventListener('error', errorHandler);
+                speech.abort();
             };
         });
     }
