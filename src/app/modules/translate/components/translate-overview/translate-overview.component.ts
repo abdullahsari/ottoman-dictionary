@@ -6,19 +6,24 @@ import {
     OnDestroy,
     ViewChild,
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
 import { fromEvent } from 'rxjs/observable/fromEvent';
-import { tap } from 'rxjs/operators';
+import { merge } from 'rxjs/observable/merge';
+import { of } from 'rxjs/observable/of';
+import { catchError, tap } from 'rxjs/operators';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
 import { filter } from 'rxjs/operators/filter';
+import { map } from 'rxjs/operators/map';
 import { pluck } from 'rxjs/operators/pluck';
 import { switchMap } from 'rxjs/operators/switchMap';
+import { takeUntil } from 'rxjs/operators/takeUntil';
 
 import { Translation } from '../../../../common/models/translation.interface';
 import { PageTitleService } from '../../../core/services/page-title.service';
 import { SnackbarService } from '../../../core/services/snackbar.service';
 import { OttomanService } from '../../services/ottoman.service';
+import { SpeechService } from '../../services/speech.service';
 
 /**
  * The overview component for translating
@@ -49,33 +54,53 @@ import { OttomanService } from '../../services/ottoman.service';
 export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     private _cancelRequest: boolean;
     private _glossary: string[];
-    private _subscription: Subscription;
+    private _unsubscribe$: Subject<void>;
     public isTranslating: boolean;
     public translation: Translation;
     @ViewChild('input') private _textarea: ElementRef;
+    @ViewChild('speech', { read: ElementRef })
+    private _speech: ElementRef;
 
     constructor(
         private _ottomanService: OttomanService,
         private _pageTitleService: PageTitleService,
-        private _snackbarService: SnackbarService
+        private _snackbarService: SnackbarService,
+        private _speechService: SpeechService
     ) {
         this._pageTitleService.title = 'Translate';
+        this._unsubscribe$ = new Subject<void>();
     }
 
     public ngAfterViewInit(): void {
-        this._subscription = fromEvent(this._textarea.nativeElement, 'input')
+        const text$ = fromEvent(this._textarea.nativeElement, 'input').pipe(
+            pluck('srcElement', 'value'),
+            tap(words => {
+                if (words === '') this.clear();
+            }),
+            debounceTime(500),
+            distinctUntilChanged(),
+            filter(word => word !== '')
+        );
+        const listen$ = fromEvent(this._speech.nativeElement, 'click').pipe(
+            switchMap(() => this._speechService.listen()),
+            catchError(() => {
+                this._snackbarService.notify(
+                    'Sorry, could not understand what you said.'
+                );
+                return of('');
+            }),
+            map((res: string[]) => res.join(' ')),
+            tap(words => {
+                this._textarea.nativeElement.value = words;
+            })
+        );
+        merge(text$, listen$)
             .pipe(
-                pluck('srcElement', 'value'),
-                tap(word => {
-                    if (word === '') this.clear();
-                }),
-                debounceTime(500),
-                distinctUntilChanged(),
-                filter(word => word !== ''),
-                switchMap((word: string) => {
+                takeUntil(this._unsubscribe$),
+                switchMap((res: string) => {
                     this.isTranslating = true;
                     this._cancelRequest = false;
-                    return this._ottomanService.translate(word);
+                    return this._ottomanService.translate(res);
                 })
             )
             .subscribe(
@@ -95,7 +120,8 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this._subscription.unsubscribe();
+        this._unsubscribe$.next();
+        this._unsubscribe$.complete();
     }
 
     /**

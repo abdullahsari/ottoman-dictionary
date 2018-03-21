@@ -15,6 +15,9 @@
         <button *ngIf="input.value" [@popAnimation] (click)="clear()" mat-icon-button>
             <mat-icon>clear</mat-icon>
         </button>
+        <button #speech mat-icon-button>
+            <mat-icon>mic</mat-icon>
+        </button>
     </div>
 </mat-card>
 <mat-card [@popAnimation] *ngIf="translation">
