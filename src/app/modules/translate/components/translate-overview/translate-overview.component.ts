@@ -92,7 +92,7 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
                 const message =
                     err.error === 'not-allowed'
                         ? 'You must grant the required permissions to be able to use the speech to text functionality.'
-                        : 'I think you have not said anything at all.';
+                        : 'No speech was detected. You may want to check your microphone settings.';
                 this._snackbarService.notify(message);
                 return of([]);
             }),
