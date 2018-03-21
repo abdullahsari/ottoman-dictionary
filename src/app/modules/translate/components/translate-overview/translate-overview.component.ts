@@ -10,7 +10,7 @@ import { Subject } from 'rxjs/Subject';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { merge } from 'rxjs/observable/merge';
 import { of } from 'rxjs/observable/of';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators/catchError';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
 import { filter } from 'rxjs/operators/filter';
@@ -18,6 +18,7 @@ import { map } from 'rxjs/operators/map';
 import { pluck } from 'rxjs/operators/pluck';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { takeUntil } from 'rxjs/operators/takeUntil';
+import { tap } from 'rxjs/operators/tap';
 
 import { Translation } from '../../../../common/models/translation.interface';
 import { PageTitleService } from '../../../core/services/page-title.service';
