@@ -57,6 +57,7 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     private _glossary: string[];
     private _unsubscribe$: Subject<void>;
     public isTranslating: boolean;
+    public micStatus: string;
     public translation: Translation;
     @ViewChild('input') private _textarea: ElementRef;
     @ViewChild('speech', { read: ElementRef })
@@ -70,6 +71,7 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     ) {
         this._pageTitleService.title = 'Translate';
         this._unsubscribe$ = new Subject<void>();
+        this.micStatus = 'mic';
     }
 
     public ngAfterViewInit(): void {
@@ -88,10 +90,17 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
             }),
             switchMap(() => this._speechService.listen()),
             catchError(err => {
-                const message =
-                    err.error === 'not-allowed'
-                        ? 'You must grant the required permissions to be able to use the speech to text functionality.'
-                        : 'No speech was detected. You may want to check your microphone settings.';
+                let message;
+                if (err.error === 'not-allowed') {
+                    message =
+                        'You must grant the required permissions to be able to use the speech to text functionality.';
+                    this.micStatus = 'mic_off';
+                } else {
+                    message =
+                        'No speech was detected. You may want to check your microphone settings.';
+                    this.micStatus = 'mic_none';
+                }
+
                 this._snackbarService.notify(message);
                 return of([]);
             }),

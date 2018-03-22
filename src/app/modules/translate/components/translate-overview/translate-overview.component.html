@@ -16,8 +16,8 @@
             <button *ngIf="input.value" [@popAnimation] (click)="clear()" mat-icon-button>
                 <mat-icon>clear</mat-icon>
             </button>
-            <button #speech mat-icon-button>
-                <mat-icon>mic</mat-icon>
+            <button [disabled]="micStatus !== 'mic'" #speech mat-icon-button>
+                <mat-icon>{{micStatus}}</mat-icon>
             </button>
         </div>
     </div>
