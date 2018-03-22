@@ -6,19 +6,25 @@ import {
     OnDestroy,
     ViewChild,
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
 import { fromEvent } from 'rxjs/observable/fromEvent';
-import { tap } from 'rxjs/operators';
+import { merge } from 'rxjs/observable/merge';
+import { of } from 'rxjs/observable/of';
+import { catchError } from 'rxjs/operators/catchError';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
 import { filter } from 'rxjs/operators/filter';
+import { map } from 'rxjs/operators/map';
 import { pluck } from 'rxjs/operators/pluck';
 import { switchMap } from 'rxjs/operators/switchMap';
+import { takeUntil } from 'rxjs/operators/takeUntil';
+import { tap } from 'rxjs/operators/tap';
 
 import { Translation } from '../../../../common/models/translation.interface';
 import { PageTitleService } from '../../../core/services/page-title.service';
 import { SnackbarService } from '../../../core/services/snackbar.service';
 import { OttomanService } from '../../services/ottoman.service';
+import { SpeechService } from '../../services/speech.service';
 
 /**
  * The overview component for translating
@@ -49,33 +55,73 @@ import { OttomanService } from '../../services/ottoman.service';
 export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     private _cancelRequest: boolean;
     private _glossary: string[];
-    private _subscription: Subscription;
+    private _unsubscribe$: Subject<void>;
     public isTranslating: boolean;
+    public micStatus: string;
     public translation: Translation;
     @ViewChild('input') private _textarea: ElementRef;
+    @ViewChild('speech', { read: ElementRef })
+    private _speech: ElementRef;
 
     constructor(
         private _ottomanService: OttomanService,
         private _pageTitleService: PageTitleService,
-        private _snackbarService: SnackbarService
+        private _snackbarService: SnackbarService,
+        private _speechService: SpeechService
     ) {
         this._pageTitleService.title = 'Translate';
+        this._unsubscribe$ = new Subject<void>();
+        this.micStatus = 'mic';
     }
 
     public ngAfterViewInit(): void {
-        this._subscription = fromEvent(this._textarea.nativeElement, 'input')
+        // Text input
+        const text$ = fromEvent(this._textarea.nativeElement, 'input').pipe(
+            pluck('srcElement', 'value'),
+            debounceTime(500),
+            distinctUntilChanged()
+        );
+
+        // Verbal input
+        const listen$ = fromEvent(this._speech.nativeElement, 'click').pipe(
+            debounceTime(200),
+            tap(() => {
+                this._snackbarService.notify('Listening...');
+            }),
+            switchMap(() => this._speechService.listen()),
+            catchError(err => {
+                let message;
+                if (err.error === 'not-allowed') {
+                    message =
+                        'You must grant the required permissions to be able to use the speech to text functionality.';
+                    this.micStatus = 'mic_off';
+                } else {
+                    message =
+                        'No speech was detected. You may want to check your microphone settings.';
+                    this.micStatus = 'mic_none';
+                }
+
+                this._snackbarService.notify(message);
+                return of([]);
+            }),
+            map((res: string[]) => res.join(' ')),
+            tap(words => {
+                this._textarea.nativeElement.value = words;
+            })
+        );
+
+        // Combine input methods
+        merge(text$, listen$)
             .pipe(
-                pluck('srcElement', 'value'),
-                tap(word => {
-                    if (word === '') this.clear();
+                takeUntil(this._unsubscribe$),
+                tap(words => {
+                    if (words === '') this.clear();
                 }),
-                debounceTime(500),
-                distinctUntilChanged(),
                 filter(word => word !== ''),
-                switchMap((word: string) => {
+                switchMap((res: string) => {
                     this.isTranslating = true;
                     this._cancelRequest = false;
-                    return this._ottomanService.translate(word);
+                    return this._ottomanService.translate(res);
                 })
             )
             .subscribe(
@@ -95,7 +141,8 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this._subscription.unsubscribe();
+        this._unsubscribe$.next();
+        this._unsubscribe$.complete();
     }
 
     /**

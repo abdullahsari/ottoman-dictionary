@@ -1,9 +1,13 @@
 @import 'variables', 'mixins';
 
 :host {
-    @include flex($justify: center);
+    @include flex(column);
+}
 
-    flex-wrap: wrap;
+.actions {
+    @include flex($justify: flex-end);
+
+    min-width: 8.5rem;
 }
 
 .input {
@@ -112,4 +116,8 @@ mat-list-option {
             font-size: 1.3rem;
         }
     }
+}
+
+mat-spinner {
+    margin: 0 auto;
 }
