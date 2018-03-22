@@ -7,35 +7,49 @@
     </div>
     <mat-divider></mat-divider>
     <div class="input">
-        <textarea #input placeholder="Enter a word..."></textarea>
-        <button *ngIf="input.value" [@popAnimation] (click)="clear()" mat-icon-button>
-            <mat-icon>clear</mat-icon>
-        </button>
+        <textarea #input
+                  matTextareaAutosize
+                  matAutosizeMinRows="1"
+                  matAutosizeMaxRows="3"
+                  placeholder="Enter a word..."></textarea>
+        <div class="actions">
+            <button *ngIf="input.value" [@popAnimation] (click)="clear()" mat-icon-button>
+                <mat-icon>clear</mat-icon>
+            </button>
+            <button [disabled]="micStatus !== 'mic'" #speech mat-icon-button>
+                <mat-icon>{{micStatus}}</mat-icon>
+            </button>
+        </div>
     </div>
 </mat-card>
 <mat-card [@popAnimation] *ngIf="translation">
-    <mat-card-title>
-        {{translation.searched}} ({{translation.results.length}} results)
-    </mat-card-title>
-    <mat-card-content>
-        <p *ngIf="!translation.results.length">
-            There is no translation for this word.
-            <span class="emoji">😞</span>
-        </p>
-        <mat-selection-list #msl [hidden]="translation.results.length">
-            <mat-list-option (selectionChange)="toggle(result)" *ngFor="let result of translation.results">
-                {{result}}
-            </mat-list-option>
-        </mat-selection-list>
-    </mat-card-content>
-    <mat-card-actions *ngIf="translation.results.length">
-        <button [disabled]="msl.selectedOptions.isEmpty()"
-                mat-raised-button
-                color="accent">
+    <ng-container *ngIf="isTranslating; else results">
+        <mat-spinner></mat-spinner>
+    </ng-container>
+    <ng-template #results>
+        <mat-card-title>
+            {{translation.searched}} ({{translation.results.length}} results)
+        </mat-card-title>
+        <mat-card-content>
+            <p *ngIf="!translation.results.length">
+                There is no translation for this word.
+                <span class="emoji">😞</span>
+            </p>
+            <mat-selection-list #msl [hidden]="translation.results.length">
+                <mat-list-option (selectionChange)="toggle(result)" *ngFor="let result of translation.results">
+                    {{result}}
+                </mat-list-option>
+            </mat-selection-list>
+        </mat-card-content>
+        <mat-card-actions *ngIf="translation.results.length">
+            <button [disabled]="msl.selectedOptions.isEmpty()"
+                    mat-raised-button
+                    color="accent">
             <span class="icon-btn">
                 <span>Glossary</span>
                 <mat-icon>favorite</mat-icon>
             </span>
-        </button>
-    </mat-card-actions>
+            </button>
+        </mat-card-actions>
+    </ng-template>
 </mat-card>

@@ -5,8 +5,10 @@ import {
     MatCardModule,
     MatDividerModule,
     MatIconModule,
+    MatInputModule,
     MatListModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
@@ -18,10 +20,12 @@ const modules = [
     MatCardModule,
     MatDividerModule,
     MatIconModule,
+    MatInputModule,
     MatListModule,
     MatProgressBarModule,
     MatSidenavModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     MatToolbarModule,
 ];
 
