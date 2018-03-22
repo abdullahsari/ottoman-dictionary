@@ -88,7 +88,6 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
             }),
             switchMap(() => this._speechService.listen()),
             catchError(err => {
-                // TODO - prevent unsubscription
                 const message =
                     err.error === 'not-allowed'
                         ? 'You must grant the required permissions to be able to use the speech to text functionality.'
