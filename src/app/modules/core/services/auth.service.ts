@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { auth } from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -18,13 +18,13 @@ export class AuthService {
 
     constructor(
         private _afAuth: AngularFireAuth,
-        private _afs: AngularFirestore
+        private _afDb: AngularFireDatabase
     ) {
         this.user = this._afAuth.authState.pipe(
             switchMap(user => {
                 if (user) {
-                    return this._afs
-                        .doc<User>('users/' + user.uid)
+                    return this._afDb
+                        .object('/users/' + user.uid)
                         .valueChanges();
                 }
                 return of(null);
@@ -55,10 +55,8 @@ export class AuthService {
      */
     public oAuthLogin(provider: auth.AuthProvider): Promise<any> {
         return this._afAuth.auth
-            .signInWithRedirect(provider)
-            .then(credential => {
-                this.updateUserData(credential);
-            });
+            .signInWithPopup(provider)
+            .then(credential => this.updateUserData(credential));
     }
 
     /**
@@ -72,9 +70,9 @@ export class AuthService {
      * Sets the user data to Firestore
      * @param credential The user's credentials
      */
-    private updateUserData(credential: any): void {
+    private updateUserData(credential: any): Promise<void> {
         const { displayName, email, photoURL, uid } = credential.user;
-        const userRef = this._afs.doc('users/' + uid);
+        const userRef = this._afDb.object('/users/' + uid);
         const data = {
             displayName,
             email,
@@ -83,6 +81,6 @@ export class AuthService {
             provider: credential.additionalUserInfo.providerId.split('.')[0],
             status: Status.Online,
         };
-        userRef.set(data);
+        return userRef.set(data);
     }
 }
