@@ -1,0 +1,11 @@
+<ng-container [ngSwitch]="status">
+    <span *ngSwitchCase="'ONLINE'" class="online">
+        Online
+    </span>
+    <span *ngSwitchCase="'OFFLINE'" class="offline">
+        Offline
+    </span>
+    <span *ngSwitchCase="'IDLE'" class="idle">
+        Away
+    </span>
+</ng-container>
