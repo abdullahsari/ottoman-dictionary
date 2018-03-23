@@ -15,6 +15,7 @@ import { AppComponent } from './components/app/app.component';
 import { CoreModule } from './modules/core/core.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { TranslateModule } from './modules/translate/translate.module';
+import { UsersModule } from './modules/users/users.module';
 
 @NgModule({
     declarations: [AppComponent, ...declarations],
@@ -33,6 +34,7 @@ import { TranslateModule } from './modules/translate/translate.module';
         CoreModule,
         SharedModule,
         TranslateModule,
+        UsersModule,
     ],
     bootstrap: [AppComponent],
 })
