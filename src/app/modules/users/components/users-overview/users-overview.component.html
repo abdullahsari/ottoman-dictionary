@@ -1,0 +1,21 @@
+<ng-container *ngIf="users$ | async as users; else spinner">
+    <mat-card>
+        <mat-card-title>
+            <mat-icon>people</mat-icon>
+            Total users: {{users.length}}
+        </mat-card-title>
+    </mat-card>
+    <mat-card *ngFor="let user of users">
+        <mat-card-title-group>
+            <mat-card-title>{{user.displayName}}</mat-card-title>
+            <mat-card-subtitle *ngIf="user.status === 'OFFLINE'">Last active: {{user.lastActive | date}}</mat-card-subtitle>
+            <img mat-card-sm-image [src]="user.photoURL" alt="Avatar" />
+        </mat-card-title-group>
+        <mat-card-content>
+            <app-user-status [status]="user.status"></app-user-status>
+        </mat-card-content>
+    </mat-card>
+</ng-container>
+<ng-template #spinner>
+    <mat-spinner></mat-spinner>
+</ng-template>

@@ -1,3 +1,43 @@
+@import 'variables', 'mixins';
+
 :host {
     display: block;
+}
+
+mat-card {
+    & + & {
+        margin-top: 2rem;
+
+        mat-card-title {
+            @include respond-to(xs) {
+                font-size: 2.4rem;
+            }
+
+            font-size: 1.5rem;
+        }
+    }
+
+    &:first-of-type {
+        @include respond-to(md) {
+            margin-top: -3.6rem;
+        }
+
+        position: relative;
+        text-align: center;
+
+        mat-icon {
+            @include icon-size(3rem);
+
+            position: absolute;
+            left: 2rem;
+        }
+    }
+}
+
+mat-card-title-group {
+    margin: 0;
+}
+
+mat-spinner {
+    margin: 1rem auto;
 }
