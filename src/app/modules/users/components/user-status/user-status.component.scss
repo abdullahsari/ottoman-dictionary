@@ -32,6 +32,16 @@
     }
 }
 
+.unknown {
+    $color: #404040;
+
+    color: $color;
+
+    &::before {
+        background-color: $color;
+    }
+}
+
 span {
     font-size: 2rem;
 
