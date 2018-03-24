@@ -4,32 +4,40 @@
     display: block;
 }
 
-mat-card {
-    & + & {
+.total {
+    @include respond-to(md) {
+        margin-top: -3.6rem;
+    }
+
+    position: relative;
+    text-align: center;
+
+    mat-icon {
+        @include icon-size(3rem);
+
+        position: absolute;
+        left: 2rem;
+    }
+}
+
+div {
+    @include respond-to(xs) {
+        justify-content: space-between;
+    }
+    @include flex($justify: center);
+
+    flex-wrap: wrap;
+
+    mat-card {
+        flex: 0 1 30rem;
         margin-top: 2rem;
 
         mat-card-title {
             @include respond-to(xs) {
-                font-size: 2.4rem;
+                font-size: 2rem;
             }
 
             font-size: 1.5rem;
-        }
-    }
-
-    &:first-of-type {
-        @include respond-to(md) {
-            margin-top: -3.6rem;
-        }
-
-        position: relative;
-        text-align: center;
-
-        mat-icon {
-            @include icon-size(3rem);
-
-            position: absolute;
-            left: 2rem;
         }
     }
 }
