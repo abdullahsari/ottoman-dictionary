@@ -17,7 +17,7 @@ export class AnonymousGuard implements CanActivate {
     constructor(private _authService: AuthService, private _router: Router) {}
 
     public canActivate(): Observable<boolean> {
-        return this._authService.user.pipe(
+        return this._authService.user$.pipe(
             first(),
             map(user => !user),
             tap(isAnonymous => {
