@@ -96,7 +96,7 @@ export class AuthService {
     }
 
     /**
-     * Updates the user$'s status when a connection to Firebase starts
+     * Updates the user's status when a connection to Firebase starts
      */
     private updateOnConnect(): void {
         this._afDb
@@ -109,7 +109,7 @@ export class AuthService {
     }
 
     /**
-     * Updates the user$'s status when the connection to Firebase ends
+     * Updates the 's status when the connection to Firebase ends
      */
     private updateOnDisconnect(): void {
         database()
@@ -139,7 +139,7 @@ export class AuthService {
     }
 
     /**
-     * Updates a user$'s status in the Firebase DB
+     * Updates a user's status in the Firebase DB
      * @param {Status} status The new status
      */
     private updateStatus(status: Status): void {
@@ -150,8 +150,8 @@ export class AuthService {
     }
 
     /**
-     * Sets the user$ data to Firestore
-     * @param credential The user$'s credentials
+     * Sets the user data to Firestore
+     * @param credential The user's credentials
      */
     private updateUserData(credential: any): Promise<void> {
         const { displayName, email, photoURL, uid } = credential.user;
