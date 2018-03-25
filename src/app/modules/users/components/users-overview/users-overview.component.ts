@@ -1,3 +1,11 @@
+import {
+    animate,
+    query,
+    state,
+    style,
+    transition,
+    trigger,
+} from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
@@ -9,6 +17,17 @@ import { UsersService } from '../../services/users.service';
     selector: 'app-users-overview',
     templateUrl: './users-overview.component.html',
     styleUrls: ['./users-overview.component.scss'],
+    animations: [
+        trigger('statusAnimation', [
+            transition(':enter', animate(0)),
+            transition('* => *', [
+                query(':enter', [
+                    style({ opacity: '0' }),
+                    animate('350ms ease-out', style({ opacity: '1' })),
+                ]),
+            ]),
+        ]),
+    ],
 })
 export class UsersOverviewComponent implements OnInit {
     public users$: Observable<User[]>;

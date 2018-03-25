@@ -14,7 +14,7 @@
                 <img mat-card-sm-image [src]="user.photoURL" alt="Avatar"/>
             </mat-card-title-group>
             <mat-card-content>
-                <app-user-status [status]="user.status"></app-user-status>
+                <app-user-status [@statusAnimation]="user.status" [status]="user.status"></app-user-status>
             </mat-card-content>
         </mat-card>
     </div>

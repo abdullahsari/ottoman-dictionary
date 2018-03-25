@@ -29,8 +29,14 @@ div {
     flex-wrap: wrap;
 
     mat-card {
+        @include flex(column, flex-end);
+
         flex: 0 1 30rem;
         margin-top: 2rem;
+
+        mat-card-subtitle {
+            font-size: 1.2rem;
+        }
 
         mat-card-title {
             @include respond-to(xs) {
