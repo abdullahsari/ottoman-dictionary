@@ -18,13 +18,28 @@ import { UsersService } from '../../services/users.service';
     templateUrl: './users-overview.component.html',
     styleUrls: ['./users-overview.component.scss'],
     animations: [
-        trigger('statusAnimation', [
+        trigger('colorAnimation', [
             transition(':enter', animate(0)),
-            transition('* => *', [
-                query(':enter', [
-                    style({ opacity: '0' }),
-                    animate('350ms ease-out', style({ opacity: '1' })),
-                ]),
+            transition('* => ONLINE', [
+                style({ backgroundColor: 'rgba(36, 210, 101, 0.2)' }),
+                animate(
+                    '1s cubic-bezier(1, .04, .66, .47)',
+                    style({ backgroundColor: '#fff' })
+                ),
+            ]),
+            transition('* => IDLE', [
+                style({ backgroundColor: 'rgba(255, 223, 89, 0.2)' }),
+                animate(
+                    '1s cubic-bezier(1, .04, .66, .47)',
+                    style({ backgroundColor: '#fff' })
+                ),
+            ]),
+            transition('* => OFFLINE', [
+                style({ backgroundColor: 'rgba(255, 53, 98, 0.2)' }),
+                animate(
+                    '1s cubic-bezier(1, .04, .66, .47)',
+                    style({ backgroundColor: '#fff' })
+                ),
             ]),
         ]),
     ],

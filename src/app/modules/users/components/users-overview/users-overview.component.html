@@ -6,7 +6,7 @@
         </mat-card-title>
     </mat-card>
     <div>
-        <mat-card *ngFor="let user of users; trackBy: trackId">
+        <mat-card [@colorAnimation]="user.status" *ngFor="let user of users; trackBy: trackId">
             <mat-card-title-group>
                 <mat-card-title>{{user.displayName}}</mat-card-title>
                 <mat-card-subtitle *ngIf="user.status === 'OFFLINE'">Last active {{user.lastActive | relativeTime}}
@@ -14,7 +14,7 @@
                 <img mat-card-sm-image [src]="user.photoURL" alt="Avatar"/>
             </mat-card-title-group>
             <mat-card-content>
-                <app-user-status [@statusAnimation]="user.status" [status]="user.status"></app-user-status>
+                <app-user-status [status]="user.status"></app-user-status>
             </mat-card-content>
         </mat-card>
     </div>
