@@ -2,7 +2,7 @@
     <mat-sidenav #snav
                  [mode]="mobileQuery.matches ? 'side' : 'over'"
                  [opened]="mobileQuery.matches ? true : false">
-        <ng-container *ngIf="authService.user | async as user">
+        <ng-container *ngIf="authService.user$ | async as user">
             <div class="header">
                 <div></div>
                 <img [src]="user.photoURL" alt="Avatar"/>

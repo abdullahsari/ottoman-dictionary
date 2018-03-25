@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { environment } from '../environments/environment';
 
@@ -15,13 +15,14 @@ import { AppComponent } from './components/app/app.component';
 import { CoreModule } from './modules/core/core.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { TranslateModule } from './modules/translate/translate.module';
+import { UsersModule } from './modules/users/users.module';
 
 @NgModule({
     declarations: [AppComponent, ...declarations],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
-        AngularFirestoreModule,
+        AngularFireDatabaseModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         BrowserModule,
@@ -33,6 +34,7 @@ import { TranslateModule } from './modules/translate/translate.module';
         CoreModule,
         SharedModule,
         TranslateModule,
+        UsersModule,
     ],
     bootstrap: [AppComponent],
 })

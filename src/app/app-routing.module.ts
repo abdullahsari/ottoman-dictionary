@@ -24,6 +24,10 @@ const routes: Routes = [
                 loadChildren:
                     './modules/translate/translate.module#TranslateModule',
             },
+            {
+                path: 'users',
+                loadChildren: './modules/users/users.module#UsersModule',
+            },
         ],
     },
     {
