@@ -21,17 +21,18 @@
 }
 
 div {
-    @include respond-to(xs) {
+    @include respond-to(sm) {
+        flex-flow: row wrap;
         justify-content: space-between;
     }
-    @include flex($justify: center);
-
-    flex-wrap: wrap;
+    @include flex(column);
 
     mat-card {
+        @include respond-to(sm) {
+            flex: 0 1 32rem;
+        }
         @include flex(column, flex-end);
 
-        flex: 0 1 30rem;
         margin-top: 2rem;
 
         mat-card-subtitle {
