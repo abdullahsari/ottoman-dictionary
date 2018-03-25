@@ -23,4 +23,8 @@ export class UsersOverviewComponent implements OnInit {
     public ngOnInit(): void {
         this.users$ = this._usersService.fetchAll();
     }
+
+    public trackId(user: User): string {
+        return user.uid;
+    }
 }

@@ -14,6 +14,10 @@ import {
     MatToolbarModule,
 } from '@angular/material';
 
+import { RelativeTimePipe } from './pipes/relative-time.pipe';
+
+const declarations = [RelativeTimePipe];
+
 const modules = [
     CommonModule,
     MatButtonModule,
@@ -31,6 +35,7 @@ const modules = [
 
 @NgModule({
     imports: [...modules],
-    exports: [...modules],
+    exports: [...modules, ...declarations],
+    declarations,
 })
 export class SharedModule {}
