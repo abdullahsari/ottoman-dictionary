@@ -1,3 +1,10 @@
+import {
+    animate,
+    query,
+    style,
+    transition,
+    trigger,
+} from '@angular/animations';
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -6,7 +13,22 @@ import { SocialType } from '../../common/models/social-type.enum';
 
 @Component({
     selector: 'app-root',
-    template: '<router-outlet></router-outlet>',
+    template: `
+        <div [@fadeAnimation]="ro.activatedRouteData['state']">
+            <router-outlet #ro="outlet"></router-outlet>
+        </div>
+    `,
+    animations: [
+        trigger('fadeAnimation', [
+            transition(':enter', animate(0)),
+            transition('* => *', [
+                query(':enter', [
+                    style({ opacity: 0 }),
+                    animate('.5s ease-in', style({ opacity: 1 })),
+                ]),
+            ]),
+        ]),
+    ],
 })
 export class AppComponent {
     constructor(

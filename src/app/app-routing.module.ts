@@ -13,6 +13,7 @@ const routes: Routes = [
         path: '',
         canActivate: [AuthGuard],
         component: ShellComponent,
+        data: { state: 'shell' },
         children: [
             {
                 path: '',
@@ -34,6 +35,7 @@ const routes: Routes = [
         path: 'login',
         canActivate: [AnonymousGuard],
         component: LoginComponent,
+        data: { state: 'login' },
     },
 ];
 
