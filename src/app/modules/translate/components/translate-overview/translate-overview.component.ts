@@ -39,14 +39,17 @@ import { SpeechService } from '../../services/speech.service';
             transition(':enter', [
                 style({ transform: 'scale(0.5)', opacity: 0 }),
                 animate(
-                    '.3s cubic-bezier(.8, -0.6, 0.26, 1.6)',
+                    '.5s cubic-bezier(.8, -0.6, 0.2, 1.5)',
                     style({ transform: 'scale(1)', opacity: 1 })
                 ),
             ]),
             transition(':leave', [
                 animate(
-                    '.2s ease-in',
-                    style({ transform: 'scale(0)', opacity: 0 })
+                    '.5s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+                    style({
+                        transform: 'scale(0.5)',
+                        opacity: 0,
+                    })
                 ),
             ]),
         ]),
