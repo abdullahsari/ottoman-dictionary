@@ -1,3 +1,11 @@
+import {
+    animate,
+    group,
+    query,
+    style,
+    transition,
+    trigger,
+} from '@angular/animations';
 import { MediaMatcher } from '@angular/cdk/layout';
 import {
     AfterViewInit,
@@ -17,6 +25,54 @@ import { PageTitleService } from '../../modules/core/services/page-title.service
     selector: 'app-shell',
     templateUrl: './shell.component.html',
     styleUrls: ['./shell.component.scss'],
+    animations: [
+        trigger('slideAnimation', [
+            transition('translate => users', [
+                style({ height: '!' }),
+                query(':enter', style({ transform: 'translateX(100%)' })),
+                query(
+                    ':enter, :leave',
+                    style({ position: 'absolute', top: 0, left: 0, right: 0 })
+                ),
+                group([
+                    query(':leave', [
+                        animate(
+                            '.5s cubic-bezier(.35, 0, .25, 1)',
+                            style({ transform: 'translateX(-150%)' })
+                        ),
+                    ]),
+                    query(':enter', [
+                        animate(
+                            '.5s cubic-bezier(.35, 0, .25, 1)',
+                            style({ transform: 'translateX(0)' })
+                        ),
+                    ]),
+                ]),
+            ]),
+            transition('users => translate', [
+                style({ height: '!' }),
+                query(':enter', style({ transform: 'translateX(-150%)' })),
+                query(
+                    ':enter, :leave',
+                    style({ position: 'absolute', top: 0, left: 0, right: 0 })
+                ),
+                group([
+                    query(':leave', [
+                        animate(
+                            '.5s cubic-bezier(.35, 0, .25, 1)',
+                            style({ transform: 'translateX(150%)' })
+                        ),
+                    ]),
+                    query(':enter', [
+                        animate(
+                            '.5s cubic-bezier(.35, 0, .25, 1)',
+                            style({ transform: 'translateX(0)' })
+                        ),
+                    ]),
+                ]),
+            ]),
+        ]),
+    ],
 })
 export class ShellComponent implements AfterViewInit, OnDestroy, OnInit {
     private _mobileQueryListener: () => void;

@@ -45,8 +45,8 @@
         <mat-toolbar color="primary">
             <h2>{{pageTitleService.title}}</h2>
         </mat-toolbar>
-        <main>
-            <router-outlet></router-outlet>
+        <main [@slideAnimation]="ro.activatedRouteData['state']">
+            <router-outlet #ro="outlet"></router-outlet>
         </main>
     </mat-sidenav-content>
 </mat-sidenav-container>
