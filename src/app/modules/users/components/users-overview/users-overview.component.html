@@ -5,7 +5,7 @@
             Total users: {{users.length}}
         </mat-card-title>
     </mat-card>
-    <div>
+    <div [@popAnimation]="users.length">
         <mat-card [@colorAnimation]="user.status" *ngFor="let user of users; trackBy: trackId">
             <mat-card-title-group>
                 <mat-card-title>{{user.displayName}}</mat-card-title>

@@ -1,7 +1,7 @@
 import {
     animate,
     query,
-    state,
+    stagger,
     style,
     transition,
     trigger,
@@ -18,6 +18,20 @@ import { UsersService } from '../../services/users.service';
     templateUrl: './users-overview.component.html',
     styleUrls: ['./users-overview.component.scss'],
     animations: [
+        trigger('popAnimation', [
+            transition('* => *', [
+                query(':enter', [
+                    style({ transform: 'scale(0.5)', opacity: 0 }),
+                    stagger(
+                        200,
+                        animate(
+                            '1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+                            style({ transform: 'scale(1)', opacity: 1 })
+                        )
+                    ),
+                ]),
+            ]),
+        ]),
         trigger('colorAnimation', [
             transition(':enter', animate(0)),
             transition('* => ONLINE', [
