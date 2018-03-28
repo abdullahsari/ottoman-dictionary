@@ -21,6 +21,12 @@ const routes: Routes = [
                 pathMatch: 'full',
             },
             {
+                data: { state: 'glossary' },
+                path: 'glossary',
+                loadChildren:
+                    './modules/glossary/glossary.module#GlossaryModule',
+            },
+            {
                 data: { state: 'translate' },
                 path: 'translate',
                 loadChildren:

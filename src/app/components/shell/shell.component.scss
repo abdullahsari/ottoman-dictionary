@@ -33,6 +33,8 @@
     }
 
     mat-icon {
+        @include icon-size(3rem);
+
         position: absolute;
         right: $offset;
         top: 4rem;
@@ -150,10 +152,6 @@ mat-sidenav-container {
     left: 0;
     right: 0;
     top: 0;
-}
-
-mat-icon {
-    @include icon-size(3rem);
 }
 
 mat-list-item {

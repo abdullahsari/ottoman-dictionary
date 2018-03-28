@@ -33,50 +33,66 @@ import { PageTitleService } from '../../modules/core/services/page-title.service
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [
         trigger('slideAnimation', [
-            transition('translate => users', [
-                style({ height: '!' }),
-                query(':enter', style({ transform: 'translateX(200%)' })),
-                query(
-                    ':enter, :leave',
-                    style({ position: 'absolute', top: 0, left: 0, right: 0 })
-                ),
-                group([
-                    query(':leave', [
-                        animate(
-                            '.75s cubic-bezier(.35, 0, .25, 1)',
-                            style({ transform: 'translateX(-200%)' })
-                        ),
+            transition(
+                'translate => glossary, translate => users, glossary => users',
+                [
+                    style({ height: '!' }),
+                    query(':enter', style({ transform: 'translateX(200%)' })),
+                    query(
+                        ':enter, :leave',
+                        style({
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                        })
+                    ),
+                    group([
+                        query(':leave', [
+                            animate(
+                                '.75s cubic-bezier(.35, 0, .25, 1)',
+                                style({ transform: 'translateX(-200%)' })
+                            ),
+                        ]),
+                        query(':enter', [
+                            animate(
+                                '.75s cubic-bezier(.35, 0, .25, 1)',
+                                style({ transform: 'translateX(0)' })
+                            ),
+                        ]),
                     ]),
-                    query(':enter', [
-                        animate(
-                            '.75s cubic-bezier(.35, 0, .25, 1)',
-                            style({ transform: 'translateX(0)' })
-                        ),
+                ]
+            ),
+            transition(
+                'users => glossary, users => translate, glossary => translate',
+                [
+                    style({ height: '!' }),
+                    query(':enter', style({ transform: 'translateX(-200%)' })),
+                    query(
+                        ':enter, :leave',
+                        style({
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                        })
+                    ),
+                    group([
+                        query(':leave', [
+                            animate(
+                                '.75s cubic-bezier(.35, 0, .25, 1)',
+                                style({ transform: 'translateX(200%)' })
+                            ),
+                        ]),
+                        query(':enter', [
+                            animate(
+                                '.75s cubic-bezier(.35, 0, .25, 1)',
+                                style({ transform: 'translateX(0)' })
+                            ),
+                        ]),
                     ]),
-                ]),
-            ]),
-            transition('users => translate', [
-                style({ height: '!' }),
-                query(':enter', style({ transform: 'translateX(-200%)' })),
-                query(
-                    ':enter, :leave',
-                    style({ position: 'absolute', top: 0, left: 0, right: 0 })
-                ),
-                group([
-                    query(':leave', [
-                        animate(
-                            '.75s cubic-bezier(.35, 0, .25, 1)',
-                            style({ transform: 'translateX(200%)' })
-                        ),
-                    ]),
-                    query(':enter', [
-                        animate(
-                            '.75s cubic-bezier(.35, 0, .25, 1)',
-                            style({ transform: 'translateX(0)' })
-                        ),
-                    ]),
-                ]),
-            ]),
+                ]
+            ),
         ]),
     ],
 })
@@ -109,6 +125,7 @@ export class ShellComponent implements AfterViewInit, OnDestroy, OnInit {
         this.mobileQuery.addListener(this._mobileQueryListener);
         this.navLinks = [
             { icon: 'translate', label: 'Translate', path: '/translate' },
+            { icon: 'list', label: 'Glossary', path: '/glossary' },
             { icon: 'account_box', label: 'Users', path: '/users' },
         ];
     }
