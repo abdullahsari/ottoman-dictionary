@@ -11,6 +11,10 @@ export class SpeechService {
 
     constructor(@Inject('speech') private _speechRecognition: any) {}
 
+    /**
+     * Initiates the speech API and returns a stream of speech results
+     * @returns {Observable<string[]>} A cold observable
+     */
     public listen(): Observable<string[]> {
         return new Observable<string[]>(observer => {
             const speech = new this._speechRecognition();
@@ -37,6 +41,11 @@ export class SpeechService {
         });
     }
 
+    /**
+     * Transforms Speech API results into a better shape
+     * @param results The results from the Web Speech API
+     * @returns {string[]} The transformed results
+     */
     private cleanSpeechResults(results: any): string[] {
         return Array.from(results).reduce(
             (final: string[], result: any) =>

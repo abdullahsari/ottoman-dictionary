@@ -13,6 +13,10 @@ import { User } from '../../../../common/models/user.interface';
 import { PageTitleService } from '../../../core/services/page-title.service';
 import { UsersService } from '../../services/users.service';
 
+/**
+ * Displays a list of users
+ * @author Muhammed Sari <hi@muhammedsari.me>
+ */
 @Component({
     selector: 'app-users-overview',
     templateUrl: './users-overview.component.html',

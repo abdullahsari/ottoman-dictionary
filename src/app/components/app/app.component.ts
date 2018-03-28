@@ -4,6 +4,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { SocialType } from '../../common/models/social-type.enum';
 
+/**
+ * The root component
+ * @author Muhammed Sari <hi@muhammedsari.me>
+ */
 @Component({
     selector: 'app-root',
     template: '<router-outlet></router-outlet>',

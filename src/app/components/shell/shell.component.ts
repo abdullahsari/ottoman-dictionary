@@ -13,6 +13,10 @@ import { AuthService } from '../../modules/core/services/auth.service';
 import { DOMEventsService } from '../../modules/core/services/dom-events.service';
 import { PageTitleService } from '../../modules/core/services/page-title.service';
 
+/**
+ * The application's shell
+ * @author Muhammed Sari <hi@muhammedsari.me>
+ */
 @Component({
     selector: 'app-shell',
     templateUrl: './shell.component.html',
