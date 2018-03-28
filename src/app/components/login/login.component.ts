@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { APP_READY_EVENT, REDIRECT_PATH } from '../../common/constants';
@@ -22,6 +22,7 @@ export class LoginComponent implements AfterViewInit {
 
     constructor(
         private _authService: AuthService,
+        private _changeDetectorRef: ChangeDetectorRef,
         private _domEventsService: DOMEventsService,
         public pageTitleService: PageTitleService,
         private _router: Router
@@ -32,6 +33,7 @@ export class LoginComponent implements AfterViewInit {
 
     public ngAfterViewInit(): void {
         this._domEventsService.triggerOnDocument(APP_READY_EVENT);
+        this._changeDetectorRef.detach();
     }
 
     /**
