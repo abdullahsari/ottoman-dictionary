@@ -25,7 +25,7 @@ import { UsersService } from '../../services/users.service';
                     stagger(
                         200,
                         animate(
-                            '1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+                            '.7s cubic-bezier(.8, -0.6, 0.2, 1.5)',
                             style({ transform: 'scale(1)', opacity: 1 })
                         )
                     ),
@@ -33,7 +33,6 @@ import { UsersService } from '../../services/users.service';
             ]),
         ]),
         trigger('colorAnimation', [
-            transition(':enter', animate(0)),
             transition('* => ONLINE', [
                 style({ backgroundColor: 'rgba(36, 210, 101, 0.2)' }),
                 animate(
