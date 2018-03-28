@@ -86,24 +86,28 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
         const listen$ = fromEvent(this._speech.nativeElement, 'click').pipe(
             debounceTime(200),
             tap(() => {
+                this.micStatus = 'mic';
                 this._snackbarService.notify('Listening...');
             }),
-            switchMap(() => this._speechService.listen()),
-            catchError(err => {
-                let message;
-                if (err.error === 'not-allowed') {
-                    message =
-                        'You must grant the required permissions to be able to use the speech to text functionality.';
-                    this.micStatus = 'mic_off';
-                } else {
-                    message =
-                        'No speech was detected. You may want to check your microphone settings.';
-                    this.micStatus = 'mic_none';
-                }
+            switchMap(() =>
+                this._speechService.listen().pipe(
+                    catchError(err => {
+                        let message;
+                        if (err.error === 'not-allowed') {
+                            message =
+                                'You must grant the required permissions to be able to use the speech to text functionality.';
+                            this.micStatus = 'mic_off';
+                        } else {
+                            message =
+                                'No speech was detected. You may want to check your microphone settings.';
+                            this.micStatus = 'mic_none';
+                        }
 
-                this._snackbarService.notify(message);
-                return of([]);
-            }),
+                        this._snackbarService.notify(message);
+                        return of([]);
+                    })
+                )
+            ),
             map((res: string[]) => res.join(' ')),
             tap(words => {
                 this._textarea.nativeElement.value = words;
