@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  * Changes points of time into human-readable relative time references
  * @author Muhammed Sari <muhammed@influo.be>
  */
-@Pipe({ name: 'relativeTime' })
+@Pipe({ name: 'relativeTime', pure: true })
 export class RelativeTimePipe implements PipeTransform {
     public transform(value: Date | number): string {
         const now = new Date();
@@ -29,7 +29,7 @@ export class RelativeTimePipe implements PipeTransform {
         // days
         if (difference < 604800) {
             const days = Math.floor(difference / 86400);
-            return days === 1 ? 'Yesterday' : days + ` days ago`;
+            return days === 1 ? 'yesterday' : days + ` days ago`;
         }
 
         // weeks

@@ -6,7 +6,7 @@ import {
     transition,
     trigger,
 } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { User } from '../../../../common/models/user.interface';
@@ -21,6 +21,7 @@ import { UsersService } from '../../services/users.service';
     selector: 'app-users-overview',
     templateUrl: './users-overview.component.html',
     styleUrls: ['./users-overview.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [
         trigger('popAnimation', [
             transition('* => *', [

@@ -1,6 +1,8 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import {
     AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     OnDestroy,
@@ -34,6 +36,7 @@ import { SpeechService } from '../../services/speech.service';
     selector: 'app-translate-overview',
     templateUrl: './translate-overview.component.html',
     styleUrls: ['./translate-overview.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [
         trigger('popAnimation', [
             transition(':enter', [
@@ -67,6 +70,7 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     private _speech: ElementRef;
 
     constructor(
+        private _changeDetectorRef: ChangeDetectorRef,
         private _ottomanService: OttomanService,
         private _pageTitleService: PageTitleService,
         private _snackbarService: SnackbarService,
@@ -90,6 +94,7 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
             debounceTime(200),
             tap(() => {
                 this.micStatus = 'mic';
+                this._changeDetectorRef.detectChanges();
                 this._snackbarService.notify('Listening...');
             }),
             switchMap(() =>
@@ -105,7 +110,7 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
                                 'No speech was detected. You may want to check your microphone settings.';
                             this.micStatus = 'mic_none';
                         }
-
+                        this._changeDetectorRef.detectChanges();
                         this._snackbarService.notify(message);
                         return of([]);
                     })
@@ -127,6 +132,7 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
                 filter(word => word !== ''),
                 switchMap((res: string) => {
                     this.isTranslating = true;
+                    this._changeDetectorRef.detectChanges();
                     this._cancelRequest = false;
                     return this._ottomanService.translate(res);
                 })
@@ -134,9 +140,10 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
             .subscribe(
                 (t: Translation) => {
                     if (!this._cancelRequest) {
-                        this._glossary = [];
-                        this.translation = t;
                         this.isTranslating = false;
+                        this.translation = t;
+                        this._changeDetectorRef.detectChanges();
+                        this._glossary = [];
                     }
                 },
                 err => {
@@ -169,10 +176,10 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
      * Clears the textarea content and cancels any ongoing translation request
      */
     public clear(): void {
-        this._textarea.nativeElement.value = '';
-        this._textarea.nativeElement.focus();
         this.translation = null;
         this.isTranslating = false;
+        this._textarea.nativeElement.value = '';
+        this._textarea.nativeElement.focus();
         this._cancelRequest = true;
     }
 }
