@@ -9,9 +9,11 @@ import {
     MatListModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatRippleModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
+    MatTooltipModule,
 } from '@angular/material';
 
 import { RelativeTimePipe } from './pipes/relative-time.pipe';
@@ -27,10 +29,12 @@ const modules = [
     MatInputModule,
     MatListModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRippleModule,
     MatSidenavModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule,
     MatToolbarModule,
+    MatTooltipModule,
 ];
 
 @NgModule({

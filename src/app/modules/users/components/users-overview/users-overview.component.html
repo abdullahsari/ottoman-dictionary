@@ -6,7 +6,7 @@
         </mat-card-title>
     </mat-card>
     <div [@popAnimation]="users.length">
-        <mat-card [@colorAnimation]="user.status" *ngFor="let user of users; trackBy: trackId">
+        <mat-card [matTooltip]="user.displayName" mat-ripple [@colorAnimation]="user.status" *ngFor="let user of users; trackBy: trackId">
             <mat-card-title-group>
                 <mat-card-title>{{user.displayName}}</mat-card-title>
                 <mat-card-subtitle *ngIf="user.status === 'OFFLINE'">Last active {{user.lastActive | relativeTime}}
