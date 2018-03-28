@@ -13,6 +13,7 @@ const routes: Routes = [
         path: '',
         canActivate: [AuthGuard],
         component: ShellComponent,
+        data: { state: 'shell' },
         children: [
             {
                 path: '',
@@ -20,11 +21,13 @@ const routes: Routes = [
                 pathMatch: 'full',
             },
             {
+                data: { state: 'translate' },
                 path: 'translate',
                 loadChildren:
                     './modules/translate/translate.module#TranslateModule',
             },
             {
+                data: { state: 'users' },
                 path: 'users',
                 loadChildren: './modules/users/users.module#UsersModule',
             },
@@ -34,6 +37,7 @@ const routes: Routes = [
         path: 'login',
         canActivate: [AnonymousGuard],
         component: LoginComponent,
+        data: { state: 'login' },
     },
 ];
 
