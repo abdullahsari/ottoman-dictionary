@@ -9,6 +9,7 @@ import {
 import { MediaMatcher } from '@angular/cdk/layout';
 import {
     AfterViewInit,
+    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     OnDestroy,
@@ -29,6 +30,7 @@ import { PageTitleService } from '../../modules/core/services/page-title.service
     selector: 'app-shell',
     templateUrl: './shell.component.html',
     styleUrls: ['./shell.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [
         trigger('slideAnimation', [
             transition('translate => users', [

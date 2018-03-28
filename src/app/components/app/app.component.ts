@@ -5,7 +5,7 @@ import {
     transition,
     trigger,
 } from '@angular/animations';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -22,6 +22,7 @@ import { SocialType } from '../../common/models/social-type.enum';
             <router-outlet #ro="outlet"></router-outlet>
         </div>
     `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [
         trigger('fadeAnimation', [
             transition(':enter', animate(0)),
