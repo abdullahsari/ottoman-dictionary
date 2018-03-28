@@ -39,6 +39,7 @@
             "spec": false
         },
         "component": {
+            "changeDetection": "OnPush",
             "spec": false
         },
         "directive": {
