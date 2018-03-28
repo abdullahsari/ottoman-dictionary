@@ -29,7 +29,7 @@ import { PageTitleService } from '../../modules/core/services/page-title.service
         trigger('slideAnimation', [
             transition('translate => users', [
                 style({ height: '!' }),
-                query(':enter', style({ transform: 'translateX(100%)' })),
+                query(':enter', style({ transform: 'translateX(200%)' })),
                 query(
                     ':enter, :leave',
                     style({ position: 'absolute', top: 0, left: 0, right: 0 })
@@ -37,13 +37,13 @@ import { PageTitleService } from '../../modules/core/services/page-title.service
                 group([
                     query(':leave', [
                         animate(
-                            '.5s cubic-bezier(.35, 0, .25, 1)',
-                            style({ transform: 'translateX(-150%)' })
+                            '.75s cubic-bezier(.35, 0, .25, 1)',
+                            style({ transform: 'translateX(-200%)' })
                         ),
                     ]),
                     query(':enter', [
                         animate(
-                            '.5s cubic-bezier(.35, 0, .25, 1)',
+                            '.75s cubic-bezier(.35, 0, .25, 1)',
                             style({ transform: 'translateX(0)' })
                         ),
                     ]),
@@ -51,7 +51,7 @@ import { PageTitleService } from '../../modules/core/services/page-title.service
             ]),
             transition('users => translate', [
                 style({ height: '!' }),
-                query(':enter', style({ transform: 'translateX(-150%)' })),
+                query(':enter', style({ transform: 'translateX(-200%)' })),
                 query(
                     ':enter, :leave',
                     style({ position: 'absolute', top: 0, left: 0, right: 0 })
@@ -59,13 +59,13 @@ import { PageTitleService } from '../../modules/core/services/page-title.service
                 group([
                     query(':leave', [
                         animate(
-                            '.5s cubic-bezier(.35, 0, .25, 1)',
-                            style({ transform: 'translateX(150%)' })
+                            '.75s cubic-bezier(.35, 0, .25, 1)',
+                            style({ transform: 'translateX(200%)' })
                         ),
                     ]),
                     query(':enter', [
                         animate(
-                            '.5s cubic-bezier(.35, 0, .25, 1)',
+                            '.75s cubic-bezier(.35, 0, .25, 1)',
                             style({ transform: 'translateX(0)' })
                         ),
                     ]),
