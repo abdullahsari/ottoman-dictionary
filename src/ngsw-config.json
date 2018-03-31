@@ -19,7 +19,7 @@
             "updateMode": "prefetch",
             "resources": {
                 "files": ["/assets/**"],
-                "versionedFiles": ["/*.png", "/*.jpg", "/*.woff2"]
+                "versionedFiles": ["/*.png", "/*.jpg", "/*.ttf", "/*.woff2"]
             }
         }
     ]
