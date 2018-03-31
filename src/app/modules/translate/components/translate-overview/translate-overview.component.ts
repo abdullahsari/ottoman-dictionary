@@ -181,6 +181,7 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     public clear(): void {
         this.translation = null;
         this.isTranslating = false;
+        this._changeDetectorRef.detectChanges();
         this._textarea.nativeElement.value = '';
         this._textarea.nativeElement.focus();
         this._cancelRequest = true;
