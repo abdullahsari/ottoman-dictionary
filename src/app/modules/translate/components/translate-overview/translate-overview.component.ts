@@ -27,6 +27,7 @@ import { PageTitleService } from '../../../core/services/page-title.service';
 import { SnackbarService } from '../../../core/services/snackbar.service';
 import { OttomanService } from '../../services/ottoman.service';
 import { SpeechService } from '../../services/speech.service';
+import { TranslateService } from '../../services/translate.service';
 
 /**
  * The overview component for translating
@@ -74,7 +75,8 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
         private _ottomanService: OttomanService,
         private _pageTitleService: PageTitleService,
         private _snackbarService: SnackbarService,
-        private _speechService: SpeechService
+        private _speechService: SpeechService,
+        private _translateService: TranslateService
     ) {
         this._pageTitleService.title = 'Translate';
         this._unsubscribe$ = new Subject<void>();
@@ -181,5 +183,27 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
         this._textarea.nativeElement.value = '';
         this._textarea.nativeElement.focus();
         this._cancelRequest = true;
+    }
+
+    /**
+     * Saves the selected entries to the glossary for future reference
+     */
+    public save(): void {
+        this._translateService
+            .add(this.translation.searched, this._glossary)
+            .then(() => {
+                this._snackbarService.notify(
+                    `Sucessfully saved the selected translations for '${
+                        this.translation.searched
+                    }'.`
+                );
+            })
+            .catch(() => {
+                this._snackbarService.notify(
+                    `Error while attempting to save the translations for '${
+                        this.translation.searched
+                    }'.`
+                );
+            });
     }
 }

@@ -6,6 +6,7 @@ import { TranslateOverviewComponent } from './components/translate-overview/tran
 import { webSpeechFactory } from './factories/web-speech.factory';
 import { OttomanService } from './services/ottoman.service';
 import { SpeechService } from './services/speech.service';
+import { TranslateService } from './services/translate.service';
 import { TranslateRoutingModule } from './translate-routing.module';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { TranslateRoutingModule } from './translate-routing.module';
         OttomanService,
         { provide: 'speech', useFactory: webSpeechFactory },
         SpeechService,
+        TranslateService,
     ],
 })
 export class TranslateModule {}

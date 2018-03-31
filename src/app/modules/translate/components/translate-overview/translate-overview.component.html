@@ -43,12 +43,13 @@
         </mat-card-content>
         <mat-card-actions *ngIf="translation.results.length">
             <button [disabled]="msl.selectedOptions.isEmpty()"
+                    (click)="save()"
                     mat-raised-button
                     color="accent">
-            <span class="icon-btn">
-                <span>Glossary</span>
-                <mat-icon>favorite</mat-icon>
-            </span>
+                <span class="icon-btn">
+                    <span>Glossary</span>
+                    <mat-icon>favorite</mat-icon>
+                </span>
             </button>
         </mat-card-actions>
     </ng-template>
