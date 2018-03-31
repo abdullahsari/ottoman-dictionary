@@ -22,6 +22,7 @@ import { switchMap } from 'rxjs/operators/switchMap';
 import { takeUntil } from 'rxjs/operators/takeUntil';
 import { tap } from 'rxjs/operators/tap';
 
+import { SnackbarAction } from '../../../../common/models/snackbar-action.enum';
 import { Translation } from '../../../../common/models/translation.interface';
 import { PageTitleService } from '../../../core/services/page-title.service';
 import { SnackbarService } from '../../../core/services/snackbar.service';
@@ -148,7 +149,7 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
                         this._glossary = [];
                     }
                 },
-                err => {
+                () => {
                     this._snackbarService.notify(
                         'Error while attempting the translation.'
                     );
@@ -189,21 +190,36 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
      * Saves the selected entries to the glossary for future reference
      */
     public save(): void {
-        this._translateService
-            .add(this.translation.searched, this._glossary)
-            .then(() => {
-                this._snackbarService.notify(
-                    `Sucessfully saved the selected translations for '${
-                        this.translation.searched
-                    }'.`
-                );
-            })
-            .catch(() => {
-                this._snackbarService.notify(
-                    `Error while attempting to save the translations for '${
-                        this.translation.searched
-                    }'.`
-                );
-            });
+        const word = this.translation.searched;
+        this._translateService.add(word, this._glossary).subscribe(
+            () => {
+                this._snackbarService
+                    .notify(`${word} saved`, SnackbarAction.Undo, 7000)
+                    .onAction()
+                    .subscribe(() => {
+                        this.undo(word);
+                    });
+            },
+            () => {
+                this._snackbarService
+                    .notify(
+                        `Error while saving '${word}'`,
+                        SnackbarAction.Retry
+                    )
+                    .onAction()
+                    .subscribe(() => {
+                        this.save();
+                    });
+            }
+        );
+    }
+
+    /**
+     * Undo previous save action
+     */
+    public undo(word: string): void {
+        this._translateService.remove(word).subscribe(undefined, () => {
+            this._snackbarService.notify(`Could not remove '${word}'`);
+        });
     }
 }
