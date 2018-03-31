@@ -24,8 +24,8 @@ import { User } from '../../../common/models/user.interface';
 @Injectable()
 export class AuthService {
     private _timer: Subscription;
-    private _uid: string;
     private _unsubcribe$: Subject<void>;
+    public uid: string;
     public user$: Observable<User>;
 
     constructor(
@@ -37,7 +37,7 @@ export class AuthService {
         this.user$ = this._afAuth.authState.pipe(
             switchMap(user => {
                 if (user) {
-                    this._uid = user.uid;
+                    this.uid = user.uid;
                     this.updateOnConnect();
                     this.updateOnDisconnect();
                     this.updateOnIdle();
@@ -114,7 +114,7 @@ export class AuthService {
     private updateOnDisconnect(): void {
         database()
             .ref()
-            .child('users/' + this._uid)
+            .child('users/' + this.uid)
             .onDisconnect()
             .update({ lastActive: Date.now(), status: Status.Offline });
     }
@@ -143,10 +143,10 @@ export class AuthService {
      * @param {Status} status The new status
      */
     private updateStatus(status: Status): void {
-        if (!this._uid) return;
+        if (!this.uid) return;
         const update: any = { status };
         if (status === Status.Offline) update.lastActive = Date.now();
-        this._afDb.object('users/' + this._uid).update(update);
+        this._afDb.object('users/' + this.uid).update(update);
     }
 
     /**
