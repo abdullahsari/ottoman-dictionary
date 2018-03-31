@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material';
+
+import { SnackbarAction } from '../../../common/models/snackbar-action.enum';
 
 /**
  * Used for displaying various snackbar notifications
@@ -9,7 +11,11 @@ import { MatSnackBar } from '@angular/material';
 export class SnackbarService {
     constructor(private _snackbar: MatSnackBar) {}
 
-    public notify(message: string, duration: number = 3000): void {
-        this._snackbar.open(message, 'Close', { duration });
+    public notify(
+        message: string,
+        action: string = SnackbarAction.Dismiss,
+        duration: number = 3000
+    ): MatSnackBarRef<SimpleSnackBar> {
+        return this._snackbar.open(message, action, { duration });
     }
 }
