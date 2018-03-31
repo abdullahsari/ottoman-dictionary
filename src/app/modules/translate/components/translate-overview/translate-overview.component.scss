@@ -68,10 +68,14 @@ mat-card {
     }
 
     &:first-of-type {
+        @include respond-to(xs) {
+            margin: 0;
+        }
         @include respond-to(md) {
             margin-top: -5.1rem;
         }
 
+        margin: -1.2rem -1.2rem 0;
         padding-top: 0;
         position: relative;
 
