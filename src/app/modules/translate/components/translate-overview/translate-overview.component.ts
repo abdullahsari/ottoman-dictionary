@@ -195,7 +195,7 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
         this._translateService.add(word, this._glossary).subscribe(
             () => {
                 this._snackbarService
-                    .notify(`${word} saved`, SnackbarAction.Undo, 7000)
+                    .notify(`${word} saved`, SnackbarAction.Undo, 5000)
                     .onAction()
                     .subscribe(() => {
                         this.undo(word);
