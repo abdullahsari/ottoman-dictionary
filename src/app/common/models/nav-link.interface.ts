@@ -1,5 +1,5 @@
 export interface NavLink {
     icon?: string;
-    label: string;
+    label?: string;
     path: string;
 }

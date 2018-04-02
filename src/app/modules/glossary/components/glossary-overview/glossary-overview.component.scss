@@ -1,3 +1,30 @@
+@import 'variables', 'mixins';
+
 :host {
     display: block;
+}
+
+div {
+    position: relative;
+}
+
+nav {
+    @include respond-to(xs) {
+        margin: -3.2rem -3.2rem 2rem;
+    }
+    @include respond-to(md) {
+        margin: 0 0 2rem;
+    }
+
+    margin: -1.2rem -1.2rem 2rem;
+
+    ::ng-deep {
+        .mat-tab-links {
+            @include flex();
+        }
+    }
+
+    a {
+        flex: 1;
+    }
 }
