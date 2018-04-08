@@ -9,26 +9,9 @@ import { PageTitleService } from '../../../core/services/page-title.service';
     templateUrl: './glossary-overview.component.html',
     styleUrls: ['./glossary-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: [
-        slideAnimation(
-            'history => memorized, history => starred, history => entries, memorized => starred, memorized => entries, starred => entries',
-            'entries => starred, entries => memorized, entries => history, starred => memorized, starred => history, memorized => history'
-        ),
-    ],
 })
-export class GlossaryOverviewComponent implements OnInit {
-    public navLinks: NavLink[];
-
+export class GlossaryOverviewComponent {
     constructor(private _pageTitleService: PageTitleService) {
         _pageTitleService.title = 'Glossary';
-    }
-
-    public ngOnInit(): void {
-        this.navLinks = [
-            { path: '.', icon: 'book' },
-            { path: 'starred', icon: 'grade' },
-            { path: 'memorized', icon: 'done' },
-            { path: 'history', icon: 'history' },
-        ];
     }
 }

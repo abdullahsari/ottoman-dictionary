@@ -11,23 +11,25 @@ import { AuthService } from '../../core/services/auth.service';
  */
 @Injectable()
 export class TranslateService {
-    private readonly PATH: string;
+    private readonly BASE_PATH: string;
 
     constructor(
         private _authService: AuthService,
         private _afDb: AngularFireDatabase
     ) {
-        this.PATH = `/glossaries/${this._authService.uid}/`;
+        this.BASE_PATH = `/glossaries/${this._authService.uid}/meanings/`;
     }
 
     /**
-     * Adds the entries for the provided word as a glossary entry
+     * Adds the meanings for the provided word
      * @param {string} word The translated word
-     * @param {string[]} entries The chosen translations
+     * @param {string[]} meanings The chosen translations
      * @returns {Promise<void>} An observable with nothing
      */
-    public add(word: string, entries: string[]): Observable<void> {
-        return fromPromise(this._afDb.object(this.PATH + word).set(entries));
+    public add(word: string, meanings: string[]): Observable<void> {
+        return fromPromise(
+            this._afDb.object(`${this.BASE_PATH}/${word}`).set(meanings)
+        );
     }
 
     /**
@@ -36,6 +38,8 @@ export class TranslateService {
      * @returns {Observable<void>} An observable with nothing
      */
     public remove(word: string): Observable<void> {
-        return fromPromise(this._afDb.object(this.PATH + word).set(null));
+        return fromPromise(
+            this._afDb.object(`${this.BASE_PATH}/${word}`).set(null)
+        );
     }
 }
