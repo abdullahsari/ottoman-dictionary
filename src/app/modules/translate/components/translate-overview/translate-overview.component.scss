@@ -2,6 +2,11 @@
 
 :host {
     @include flex(column);
+    @include respond-to(xs) {
+        margin: 0;
+    }
+
+    margin: -1.2rem -1.2rem 0;
 }
 
 .actions {
