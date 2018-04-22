@@ -60,7 +60,6 @@ import { SpeechService } from '../../services/speech.service';
 })
 export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     private _cancelRequest: boolean;
-    private _glossary: string[];
     private _unsubscribe$: Subject<void>;
     public isTranslating: boolean;
     public micStatus: string;
@@ -143,7 +142,6 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
                         this.isTranslating = false;
                         this.translation = t;
                         this._changeDetectorRef.detectChanges();
-                        this._glossary = [];
                     }
                 },
                 err => {
@@ -157,19 +155,6 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
     public ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
-    }
-
-    /**
-     * Adds/removes translations
-     * @param {string} entry The translation that should be added to the glossary
-     */
-    public toggle(entry: string): void {
-        const idx = this._glossary.indexOf(entry);
-        if (idx < 0) {
-            this._glossary.push(entry);
-        } else {
-            this._glossary.splice(idx, 1);
-        }
     }
 
     /**
