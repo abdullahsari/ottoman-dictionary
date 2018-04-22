@@ -101,12 +101,10 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
                     catchError(err => {
                         let message;
                         if (err.error === 'not-allowed') {
-                            message =
-                                'You must grant the required permissions to be able to use the speech to text functionality.';
+                            message = 'Insufficient permissions';
                             this.micStatus = 'mic_off';
                         } else {
-                            message =
-                                'No speech was detected. You may want to check your microphone settings.';
+                            message = 'No speech detected';
                             this.micStatus = 'mic_none';
                         }
                         this._changeDetectorRef.detectChanges();
@@ -145,9 +143,7 @@ export class TranslateOverviewComponent implements AfterViewInit, OnDestroy {
                     }
                 },
                 err => {
-                    this._snackbarService.notify(
-                        'Error while attempting the translation.'
-                    );
+                    this._snackbarService.notify('Translation error');
                 }
             );
     }
